@@ -36,3 +36,7 @@ To release a plugin:
 3. Push with the tags: `git push --follow-tags`.
 
 `export.ps1` zips each plugin as `exports/<plugin>-v<major>.zip` (`powershell -File export.ps1`, or name the plugins to export).
+
+## License
+
+MIT, see [LICENSE](LICENSE).

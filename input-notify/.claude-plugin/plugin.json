@@ -1,1 +1,1 @@
-{ "name": "input-notify", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "description": "Desktop notification when Claude needs your input: permission prompts, questions, and the end of a long turn." }
+{ "name": "input-notify", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "Desktop notification when Claude needs your input: permission prompts, questions, and the end of a long turn." }
