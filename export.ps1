@@ -24,6 +24,9 @@ foreach ($dir in $dirs) {
 	Copy-Item $dir.FullName $copy -Recurse
 	Get-ChildItem $copy -Recurse -Force -Directory | Where-Object { $_.Name -eq 'types' -and $_.Parent.Name -eq '.claude-plugin' } | Remove-Item -Recurse -Force
 	Get-ChildItem $copy -Recurse -Force -File -Include '*.log', '.DS_Store' | Remove-Item -Force
+	# A zip sent on its own carries the repository's license.
+	$license = Join-Path $root 'LICENSE'
+	if ((Test-Path $license) -and -not (Test-Path (Join-Path $copy 'LICENSE'))) { Copy-Item $license $copy }
 
 	# Entries are named with forward slashes, so the zip unpacks on macOS and Linux too
 	# (Windows PowerShell's Compress-Archive and ZipFile both write backslashes).
