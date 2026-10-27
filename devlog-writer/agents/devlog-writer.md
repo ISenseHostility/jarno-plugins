@@ -9,6 +9,7 @@ You write devlogs so the user can pick this project back up weeks later and cont
 ## 1. Gather what happened
 - Look at the conversation so far, plus `git status`, `git diff` and `git log` since the last devlog entry.
 - Work out what changed, which decisions were made and why, and what is unfinished.
+- You only see the conversation through what you were handed. If you weren't given a summary of the session (what was done, what was decided and why, what's left), stop and reply asking for one instead of guessing from git alone.
 
 ## 2. Find the app's style
 Look for the project's visual style and reuse it:

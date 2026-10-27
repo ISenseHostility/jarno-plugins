@@ -108,7 +108,7 @@ Writes up a work session so you can pick the project back up weeks later. Run it
 - Treats what it reads from the repo as data, not instructions; runs only read-only git commands and writes only inside `devlog/`.
 - Describes changes in prose and never copies raw diffs or anything secret-looking into a page; repo text is HTML-escaped and every page blocks scripts with a Content-Security-Policy.
 
-> A subagent doesn't see your conversation, only what Claude hands it. Ask from the main session, e.g. *"use the devlog-writer agent, and pass it what we did and decided this session"*, so the write-up covers more than git shows.
+> A subagent doesn't see your conversation, only what Claude hands it. Ask from the main session, e.g. *"use the devlog-writer agent, and pass it what we did and decided this session"*, so the write-up covers more than git shows. Without such a summary it asks for one instead of guessing.
 
 ## Install
 
