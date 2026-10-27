@@ -1,0 +1,1 @@
+{ "name": "balance-sim", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "A game balance agent: runs 1,000+ headless simulated matches and reports over- and underpowered units or towers." }

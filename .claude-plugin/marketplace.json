@@ -1,10 +1,35 @@
 {
   "name": "jarno-plugins",
-  "owner": { "name": "ISenseHostility" },
-  "metadata": { "description": "Claude Code mods: desktop notifications when Claude needs you, a stats board pane, and a rubber duck design agent." },
+  "owner": {
+    "name": "ISenseHostility"
+  },
+  "metadata": {
+    "description": "Claude Code plugins: desktop notifications when Claude needs you, a stats board pane, and agents for design questions, playtesting, game balance and translations."
+  },
   "plugins": [
-    { "name": "input-notify", "source": "./input-notify" },
-    { "name": "stats-board", "source": "./stats-board" },
-    { "name": "rubber-duck", "source": "./rubber-duck" }
+    {
+      "name": "input-notify",
+      "source": "./input-notify"
+    },
+    {
+      "name": "stats-board",
+      "source": "./stats-board"
+    },
+    {
+      "name": "rubber-duck",
+      "source": "./rubber-duck"
+    },
+    {
+      "name": "playtest-bot",
+      "source": "./playtest-bot"
+    },
+    {
+      "name": "balance-sim",
+      "source": "./balance-sim"
+    },
+    {
+      "name": "i18n-filler",
+      "source": "./i18n-filler"
+    }
   ]
 }

@@ -1,0 +1,1 @@
+{ "name": "i18n-filler", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "A translator agent: finds missing strings in ARB or JSON locale files, fills them in context, and flags the uncertain ones." }
