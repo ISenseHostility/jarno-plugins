@@ -2,7 +2,7 @@
 # Versions only bump the first number (1.0.0, 2.0.0, ...), so v1, v2, ... name them.
 #   powershell -File export.ps1             export every plugin
 #   powershell -File export.ps1 stats-board export one
-param([string[]]$Plugins)
+param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Plugins)
 
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
