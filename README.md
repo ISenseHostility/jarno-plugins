@@ -4,11 +4,11 @@
 
 <h1 align="center">jarno-plugins</h1>
 
-<p align="center">Claude Code plugins: two always-on mods and 17 agents that Claude calls by itself when they fit.</p>
+<p align="center">Claude Code plugins: two always-on mods, 17 agents and a skill that Claude uses by itself when they fit.</p>
 
 <p align="center">
   <a href="https://code.claude.com/docs/en/plugins"><img src="https://img.shields.io/badge/Claude_Code-plugin_marketplace-D97757" alt="Claude Code plugin marketplace"></a>
-  <a href="#plugins"><img src="https://img.shields.io/badge/plugins-19-D97757" alt="19 plugins"></a>
+  <a href="#plugins"><img src="https://img.shields.io/badge/plugins-20-D97757" alt="20 plugins"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/ISenseHostility/jarno-plugins?color=blue" alt="MIT license"></a>
   <a href="https://github.com/ISenseHostility/jarno-plugins/commits/main"><img src="https://img.shields.io/github/last-commit/ISenseHostility/jarno-plugins" alt="Last commit"></a>
 </p>
@@ -48,9 +48,16 @@ Install any of them on its own: each one works without the others, and they get 
 | 🧭 | [project-switcher](#-project-switcher) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fproject-switcher%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="project-switcher version"> | Tells you where every project stands | When you ask what to work on next, or come back after a break |
 | 🗓️ | [weekly-recap](#️-weekly-recap) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fweekly-recap%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="weekly-recap version"> | Turns the week's commits into a recap page | At the end of the week, or when asked what you built |
 
+**Skills** run in the main conversation, so they can stop and ask you along the way. Claude loads one by itself when the task matches.
+
+| | Skill | Version | What it does | Used when |
+| --- | --- | --- | --- | --- |
+| 🔁 | [code-porter](#-code-porter) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fcode-porter%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="code-porter version"> | Ports code without changing what it does | Code moves to another language, framework, library or major version |
+
 ## How they work together
 
 - **Shared folders.** Agents write their reports to fixed folders in your project, and other agents read them when they're there: a playtest report feeds the juice review, every report feeds the premortem, and devlogs feed the project overview and the weekly recap. Without those files, each agent works from the code alone.
+- **PORT.md.** code-porter keeps its plan and per-module status in `PORT.md`, which devlog-writer, project-switcher and premortem read, and it uses the premortem and dead-code reports when they exist.
 - **Suggested next.** Every agent ends with the other agents that would help now, such as i18n-filler after error texts are rewritten, or privacy-auditor when the premortem finds no privacy audit. Claude can hand the work on without you asking.
 - **The mods on top.** stats-board counts each agent's tokens on its own row, and input-notify tells you when Claude is waiting on you again.
 
@@ -249,6 +256,22 @@ Highlights, per-project bullets, stats and a build-in-public post draft (short a
 - **Used when:** at the end of the week, or when asked what you built.
 - **Writes:** `weekly-recaps/`
 
+## Skills
+
+#### 🔁 code-porter
+
+Moves code to another language, framework, library or major version (Java to Kotlin, JS to TS, Provider to Riverpod, Spring Boot 2 to 3) while keeping its behavior identical.
+
+1. **Plan:** `PORT.md` with the dependency map, the port order (leaf modules first) and a status per module; waits for your approval.
+2. **Capture behavior:** tests against the old code first, preferably ones that run against both versions.
+3. **Port one module at a time,** idiomatic rather than line by line, running the tests each time.
+4. **Verify parity:** old and new on the same inputs; every difference fixed or listed for you to confirm.
+
+It never edits or deletes the old code on its own, doesn't fix bugs mid-port (it notes them), never deletes tests to make them pass, and asks when two targets are both reasonable. It watches for the classic traps: nulls, overflow, money, time zones, encoding, ordering, serialization, ORM loading and changed defaults.
+
+- **Used when:** code moves from one technology to another, even if you don't say "port". Not for small single-file edits.
+- **Writes:** `PORT.md`, the parity tests and the new code
+
 ## Install
 
 Install the ones you want. In a Claude Code terminal session:
@@ -273,6 +296,7 @@ Install the ones you want. In a Claude Code terminal session:
 /plugin install devlog-writer --marketplace ISenseHostility/jarno-plugins
 /plugin install project-switcher --marketplace ISenseHostility/jarno-plugins
 /plugin install weekly-recap --marketplace ISenseHostility/jarno-plugins
+/plugin install code-porter --marketplace ISenseHostility/jarno-plugins
 ```
 
 Or from a shell:
@@ -297,6 +321,7 @@ claude plugin install landing-page-generator --marketplace ISenseHostility/jarno
 claude plugin install devlog-writer --marketplace ISenseHostility/jarno-plugins
 claude plugin install project-switcher --marketplace ISenseHostility/jarno-plugins
 claude plugin install weekly-recap --marketplace ISenseHostility/jarno-plugins
+claude plugin install code-porter --marketplace ISenseHostility/jarno-plugins
 ```
 
 In the desktop app: **+** next to the prompt box → **Plugins** → **Add marketplace** `ISenseHostility/jarno-plugins` → **Add plugin**.
@@ -305,7 +330,7 @@ Each agent adds about 65 to 100 tokens to every session for its description (abo
 
 ## Development
 
-A mod is a hooks module (`hooks/register.ts[x]`) with tests in `tests/`; an agent is one file, `agents/<name>.md`, whose `description` tells Claude when to use it: what it does, then "Use proactively when …".
+A mod is a hooks module (`hooks/register.ts[x]`) with tests in `tests/`; an agent is one file, `agents/<name>.md`, and a skill is `skills/<name>/SKILL.md`; each one's `description` tells Claude when to use it: what it does, then "Use proactively when …".
 
 ```sh
 claude plugin validate <plugin>   # what the engine will load and refuse

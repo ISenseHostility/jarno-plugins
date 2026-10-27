@@ -1,0 +1,1 @@
+{ "name": "code-porter", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "A skill that ports code to another language, framework, library or major version without changing behavior: plan, capture behavior in tests, port module by module, verify parity." }
