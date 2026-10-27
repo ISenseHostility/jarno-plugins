@@ -4,7 +4,7 @@
     "name": "ISenseHostility"
   },
   "metadata": {
-    "description": "Claude Code plugins: desktop notifications when Claude needs you, a stats board pane, and agents for design questions, playtesting, game balance and translations."
+    "description": "Claude Code plugins: desktop notifications when Claude needs you, a stats board pane, and agents for design questions, playtesting, game balance, translations and devlogs."
   },
   "plugins": [
     {
@@ -30,6 +30,10 @@
     {
       "name": "i18n-filler",
       "source": "./i18n-filler"
+    },
+    {
+      "name": "devlog-writer",
+      "source": "./devlog-writer"
     }
   ]
 }

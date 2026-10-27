@@ -4,7 +4,7 @@
 
 <h1 align="center">jarno-plugins</h1>
 
-<p align="center">Claude Code plugins: two mods for long sessions, and agents for design, playtesting, game balance and translations.</p>
+<p align="center">Claude Code plugins: two mods for long sessions, and agents for design, playtesting, game balance, translations and devlogs.</p>
 
 <p align="center">
   <a href="https://code.claude.com/docs/en/plugins"><img src="https://img.shields.io/badge/Claude_Code-plugin_marketplace-D97757" alt="Claude Code plugin marketplace"></a>
@@ -24,6 +24,7 @@
 | 🎮 | [playtest-bot](#-playtest-bot) | agent | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fplaytest-bot%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="playtest-bot version"> | Plays your browser game and reports the bugs |
 | ⚖️ | [balance-sim](#️-balance-sim) | agent | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fbalance-sim%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="balance-sim version"> | Simulates matches to find over- and underpowered units |
 | 🌐 | [i18n-filler](#-i18n-filler) | agent | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fi18n-filler%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="i18n-filler version"> | Fills in missing translations, flags the doubtful ones |
+| 📓 | [devlog-writer](#-devlog-writer) | agent | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fdevlog-writer%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="devlog-writer version"> | Writes the session up as an HTML devlog page |
 
 **Mods** hook into Claude Code itself. **Agents** are subagents: ask for one by name (*"use the playtest-bot agent"*) or pick it in `/agents`. None of the agents fix or change what they report on.
 
@@ -95,6 +96,18 @@ A translator for Flutter ARB and JSON locale files. Run it after adding user-fac
 - Ends with a list of the translations it's unsure about (wordplay, slang, legal text, strings with too little context) and why.
 - Never touches existing translations or the source file.
 
+### 📓 devlog-writer
+
+Writes up a work session so you can pick the project back up weeks later. Run it at the end of a session.
+
+- Works out what changed, what was decided and why, and what's unfinished, from the session and git (`status`, `diff` and the `log` since the last entry).
+- Writes `devlog/YYYY-MM-DD-<slug>.html`: summary, what changed, decisions (with the rejected alternatives), unfinished work and next steps, and the key files touched.
+- Keeps `devlog/index.html` current, newest first.
+- Each page is one self-contained HTML file in your app's own look (CSS variables, Tailwind config, Flutter `ThemeData`, brand colours), or a clean light and dark default.
+- Only adds pages: older entries and project code stay untouched.
+
+> A subagent doesn't see your conversation, only what Claude hands it. Ask from the main session, e.g. *"use the devlog-writer agent, and pass it what we did and decided this session"*, so the write-up covers more than git shows.
+
 ## Install
 
 Install the ones you want. In a Claude Code terminal session:
@@ -106,6 +119,7 @@ Install the ones you want. In a Claude Code terminal session:
 /plugin install playtest-bot --marketplace ISenseHostility/jarno-plugins
 /plugin install balance-sim --marketplace ISenseHostility/jarno-plugins
 /plugin install i18n-filler --marketplace ISenseHostility/jarno-plugins
+/plugin install devlog-writer --marketplace ISenseHostility/jarno-plugins
 ```
 
 Or from a shell:
@@ -117,6 +131,7 @@ claude plugin install rubber-duck --marketplace ISenseHostility/jarno-plugins
 claude plugin install playtest-bot --marketplace ISenseHostility/jarno-plugins
 claude plugin install balance-sim --marketplace ISenseHostility/jarno-plugins
 claude plugin install i18n-filler --marketplace ISenseHostility/jarno-plugins
+claude plugin install devlog-writer --marketplace ISenseHostility/jarno-plugins
 ```
 
 In the desktop app: **+** next to the prompt box → **Plugins** → **Add marketplace** `ISenseHostility/jarno-plugins` → **Add plugin**.
