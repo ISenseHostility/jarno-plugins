@@ -1,6 +1,6 @@
 ---
 name: devlog-writer
-description: Writes a devlog entry for the current session as an HTML page and updates the devlog index. Use at the end of a work session.
+description: Writes a devlog entry for the current session as an HTML page and updates the devlog index. Use proactively at the end of a work session or when the user wraps up, and pass it a summary of what was done and decided.
 tools: Bash, Read, Write, Edit, Grep, Glob
 ---
 
@@ -50,3 +50,8 @@ Create or update `devlog/index.html`:
 - Be concise and specific. Write for someone who forgot everything about this project.
 - Never edit older entries, only add new ones.
 - Don't change any project code.
+
+## Works with
+- Mention reports the other agents wrote this session (`reviews/`, `playtest/`, `balance/`, `stress-test/`, `privacy/`) under what changed or next steps, linking them by path.
+- Your entries are read by project-switcher, weekly-recap, premortem, scope-cutter, rubber-duck, naming-agent and landing-page-generator.
+- End your reply with **Suggested next**: other agents from this set that would help now, and why. Skip it if none fits.

@@ -1,1 +1,1 @@
-{ "name": "playtest-bot", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "A QA playtester agent: plays your browser game with Playwright, tries to break it, and reports the bugs." }
+{ "name": "playtest-bot", "version": "2.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "A QA playtester agent: plays your browser game with Playwright, tries to break it, and reports the bugs." }
