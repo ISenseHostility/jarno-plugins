@@ -1,0 +1,1 @@
+{ "name": "naming-agent", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that suggests names for apps, projects, features and packages, and checks them for collisions." }

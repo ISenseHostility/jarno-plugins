@@ -1,0 +1,1 @@
+{ "name": "weekly-recap", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that turns the week's commits and devlogs across your repos into a short HTML recap with a build-in-public draft." }

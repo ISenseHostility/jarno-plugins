@@ -1,0 +1,1 @@
+{ "name": "landing-page-generator", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that builds a single-page HTML landing site for your project in the app's own style." }

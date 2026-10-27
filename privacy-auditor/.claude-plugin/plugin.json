@@ -1,0 +1,1 @@
+{ "name": "privacy-auditor", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that maps what data your app collects, stores and sends, and drafts store data-safety answers and a privacy policy." }

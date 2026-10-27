@@ -1,0 +1,1 @@
+{ "name": "dead-code-hunter", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that finds unused code, assets and dependencies and proves what is safe to delete." }

@@ -1,0 +1,1 @@
+{ "name": "tutorial-tester", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that plays the first minutes of your browser game as a total beginner and reports where it gets confused." }

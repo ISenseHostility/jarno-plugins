@@ -1,0 +1,1 @@
+{ "name": "error-message-reviewer", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that reviews user-facing error messages and empty states for clarity and tone, and suggests better wording." }

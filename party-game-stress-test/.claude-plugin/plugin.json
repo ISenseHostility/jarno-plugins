@@ -1,0 +1,1 @@
+{ "name": "party-game-stress-test", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that simulates many phone players joining, leaving and spamming inputs to find desyncs and crashes." }

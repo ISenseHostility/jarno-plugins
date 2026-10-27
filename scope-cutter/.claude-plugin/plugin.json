@@ -1,0 +1,1 @@
+{ "name": "scope-cutter", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that cuts a growing feature or project idea down to its smallest valuable version." }

@@ -4,7 +4,7 @@
     "name": "ISenseHostility"
   },
   "metadata": {
-    "description": "Claude Code plugins: desktop notifications when Claude needs you, a stats board pane, and agents for design questions, playtesting, game balance, translations and devlogs."
+    "description": "Claude Code plugins: two always-on mods (desktop notifications, a stats board) and 17 agents Claude calls by itself for design, game testing, code and release checks, and progress tracking."
   },
   "plugins": [
     {
@@ -20,20 +20,68 @@
       "source": "./rubber-duck"
     },
     {
+      "name": "scope-cutter",
+      "source": "./scope-cutter"
+    },
+    {
+      "name": "premortem",
+      "source": "./premortem"
+    },
+    {
+      "name": "naming-agent",
+      "source": "./naming-agent"
+    },
+    {
       "name": "playtest-bot",
       "source": "./playtest-bot"
+    },
+    {
+      "name": "tutorial-tester",
+      "source": "./tutorial-tester"
     },
     {
       "name": "balance-sim",
       "source": "./balance-sim"
     },
     {
+      "name": "juice-reviewer",
+      "source": "./juice-reviewer"
+    },
+    {
+      "name": "party-game-stress-test",
+      "source": "./party-game-stress-test"
+    },
+    {
+      "name": "error-message-reviewer",
+      "source": "./error-message-reviewer"
+    },
+    {
+      "name": "dead-code-hunter",
+      "source": "./dead-code-hunter"
+    },
+    {
+      "name": "privacy-auditor",
+      "source": "./privacy-auditor"
+    },
+    {
       "name": "i18n-filler",
       "source": "./i18n-filler"
     },
     {
+      "name": "landing-page-generator",
+      "source": "./landing-page-generator"
+    },
+    {
       "name": "devlog-writer",
       "source": "./devlog-writer"
+    },
+    {
+      "name": "project-switcher",
+      "source": "./project-switcher"
+    },
+    {
+      "name": "weekly-recap",
+      "source": "./weekly-recap"
     }
   ]
 }

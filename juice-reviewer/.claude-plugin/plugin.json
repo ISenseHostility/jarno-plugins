@@ -1,0 +1,1 @@
+{ "name": "juice-reviewer", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that reviews gameplay code and suggests game-feel improvements for your game's actual mechanics." }
