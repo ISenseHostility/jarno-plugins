@@ -4,12 +4,13 @@
 
 <h1 align="center">jarno-plugins</h1>
 
-<p align="center">Small Claude Code mods that make long sessions easier to live with.</p>
+<p align="center">Small Claude Code plugins that make long sessions easier to live with.</p>
 
 <p align="center">
   <a href="https://code.claude.com/docs/en/plugins"><img src="https://img.shields.io/badge/Claude_Code-plugin_marketplace-D97757" alt="Claude Code plugin marketplace"></a>
   <a href="input-notify"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Finput-notify%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=input-notify&color=D97757" alt="input-notify version"></a>
   <a href="stats-board"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fstats-board%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=stats-board&color=D97757" alt="stats-board version"></a>
+  <a href="rubber-duck"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Frubber-duck%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=rubber-duck&color=D97757" alt="rubber-duck version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/ISenseHostility/jarno-plugins?color=blue" alt="MIT license"></a>
   <a href="https://github.com/ISenseHostility/jarno-plugins/commits/main"><img src="https://img.shields.io/github/last-commit/ISenseHostility/jarno-plugins" alt="Last commit"></a>
 </p>
@@ -43,6 +44,18 @@ A pane docked beside the conversation with the numbers you'd otherwise have to a
 
 > Claude Code's own git changes panel sits in the same spot. Close it with `/diff` (it stays closed) to give the board the room.
 
+### 🦆 rubber-duck
+
+A design sparring partner, as a subagent. Talk a feature or an architecture decision through with it before you build; it asks, you think.
+
+- Reads the relevant code first, so its questions are about your project.
+- One or two questions at a time, on what could go wrong: edge cases, failure modes, scaling, data ownership, state, concurrency, changing requirements.
+- Follows up on vague answers and points out where what you say and what the code does disagree.
+- Never writes or suggests code, and answers a request for a solution with a question. It can only read (`Read`, `Grep`, `Glob`).
+- When the design holds up, it sums up the decisions and the open risks, then stops.
+
+Ask for it by name: *"Use the rubber-duck agent to poke holes in my plan for …"*, or pick it in `/agents`.
+
 ## Install
 
 In a Claude Code terminal session:
@@ -50,6 +63,7 @@ In a Claude Code terminal session:
 ```text
 /plugin install input-notify --marketplace ISenseHostility/jarno-plugins
 /plugin install stats-board --marketplace ISenseHostility/jarno-plugins
+/plugin install rubber-duck --marketplace ISenseHostility/jarno-plugins
 ```
 
 Or from a shell:
@@ -57,13 +71,14 @@ Or from a shell:
 ```sh
 claude plugin install input-notify --marketplace ISenseHostility/jarno-plugins
 claude plugin install stats-board --marketplace ISenseHostility/jarno-plugins
+claude plugin install rubber-duck --marketplace ISenseHostility/jarno-plugins
 ```
 
 In the desktop app: **+** next to the prompt box → **Plugins** → **Add marketplace** `ISenseHostility/jarno-plugins` → **Add plugin**.
 
 ## Development
 
-Each plugin is a hooks module (`hooks/register.ts[x]`) with tests in `tests/`:
+The hooks plugins (`hooks/register.ts[x]`) have tests in `tests/`; `rubber-duck` is one agent file (`agents/rubber-duck.md`).
 
 ```sh
 claude plugin validate <plugin>   # what the engine will load and refuse

@@ -1,0 +1,1 @@
+{ "name": "rubber-duck", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "A design sparring partner agent: asks pointed questions before you build, never writes code." }

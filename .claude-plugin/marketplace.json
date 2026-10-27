@@ -1,9 +1,10 @@
 {
   "name": "jarno-plugins",
   "owner": { "name": "ISenseHostility" },
-  "metadata": { "description": "Claude Code mods: desktop notifications when Claude needs you, and a stats board pane." },
+  "metadata": { "description": "Claude Code mods: desktop notifications when Claude needs you, a stats board pane, and a rubber duck design agent." },
   "plugins": [
     { "name": "input-notify", "source": "./input-notify" },
-    { "name": "stats-board", "source": "./stats-board" }
+    { "name": "stats-board", "source": "./stats-board" },
+    { "name": "rubber-duck", "source": "./rubber-duck" }
   ]
 }
