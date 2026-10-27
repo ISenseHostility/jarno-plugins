@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="jarno-plugins logo">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8865F"/>
+      <stop offset="1" stop-color="#B8532F"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#bg)"/>
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#shine)"/>
+  <!-- plug: two prongs, a body, a cord -->
+  <g fill="#FFF7F2">
+    <rect x="92" y="52" width="18" height="44" rx="9"/>
+    <rect x="146" y="52" width="18" height="44" rx="9"/>
+    <path d="M72 92h112v28c0 30.9-25.1 56-56 56s-56-25.1-56-56z"/>
+    <rect x="116" y="172" width="24" height="34" rx="6"/>
+  </g>
+  <!-- spark on the body -->
+  <path d="M128 106l7.5 14.5L150 128l-14.5 7.5L128 150l-7.5-14.5L106 128l14.5-7.5z" fill="#C25E39"/>
+</svg>

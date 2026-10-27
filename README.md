@@ -1,42 +1,85 @@
-# jarno-plugins
+<p align="center">
+  <img src="assets/logo.svg" width="112" alt="jarno-plugins logo">
+</p>
 
-Claude Code mods (function-hook plugins), published as one marketplace.
+<h1 align="center">jarno-plugins</h1>
 
-| Plugin | What it does |
-| --- | --- |
-| `input-notify` | A desktop notification (Windows tray balloon, else the terminal's own notification) when Claude needs your input: a question, a permission prompt, or the end of a turn that ran 20 s or more. In an IntelliJ terminal the title is `Claude - <project>`. |
-| `stats-board` | A docked stats pane: session length and busy time, context window used, plan usage limits (5-hour and weekly) and tokens per agent split into input, cached and output. `/stats-board` opens it. |
+<p align="center">Small Claude Code mods that make long sessions easier to live with.</p>
+
+<p align="center">
+  <a href="https://code.claude.com/docs/en/plugins"><img src="https://img.shields.io/badge/Claude_Code-plugin_marketplace-D97757" alt="Claude Code plugin marketplace"></a>
+  <a href="input-notify"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Finput-notify%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=input-notify&color=D97757" alt="input-notify version"></a>
+  <a href="stats-board"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fstats-board%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=stats-board&color=D97757" alt="stats-board version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/ISenseHostility/jarno-plugins?color=blue" alt="MIT license"></a>
+  <a href="https://github.com/ISenseHostility/jarno-plugins/commits/main"><img src="https://img.shields.io/github/last-commit/ISenseHostility/jarno-plugins" alt="Last commit"></a>
+</p>
+
+---
+
+## Plugins
+
+### 🔔 input-notify
+
+A desktop notification whenever Claude is waiting on you, so you can look away while it works.
+
+<img src="assets/notification.svg" width="380" alt="A Windows notification titled Claude - lyricle with Claude's question">
+
+- **When:** Claude asks a question, needs a permission or other input, or finishes a turn that ran 20 seconds or more.
+- **Where:** a Windows tray notification; on other systems, the terminal's own notification.
+- **Titles:** `Claude - <project>` in an IntelliJ terminal (the `.idea` project's name), otherwise `Claude Code needs you`.
+- Two triggers within 5 seconds show once.
+
+### 📊 stats-board
+
+A pane docked beside the conversation with the numbers you'd otherwise have to ask for.
+
+<img src="assets/stats-board.svg" width="460" alt="The stats board pane with sample data">
+
+- **Session:** how long it has been open, and how much of that Claude spent working (time waiting on you is left out).
+- **Context window:** how full it is.
+- **Plan usage limits:** the 5-hour and weekly windows, with when each resets. Shown on a Claude subscription.
+- **Tokens per agent:** input, cached and output, for the main conversation and each subagent.
+- Opens by itself in a fullscreen terminal from 144 columns; `/stats-board` opens it at any width. `/clear` starts the counts over.
+
+> Claude Code's own git changes panel sits in the same spot. Close it with `/diff` (it stays closed) to give the board the room.
 
 ## Install
 
-At the prompt of a Claude Code terminal session:
+In a Claude Code terminal session:
 
-```
+```text
 /plugin install input-notify --marketplace ISenseHostility/jarno-plugins
 /plugin install stats-board --marketplace ISenseHostility/jarno-plugins
 ```
 
-From a shell:
+Or from a shell:
 
-```
+```sh
 claude plugin install input-notify --marketplace ISenseHostility/jarno-plugins
 claude plugin install stats-board --marketplace ISenseHostility/jarno-plugins
 ```
 
-In the desktop app, where `/plugin` does not run: click + next to the prompt box, then Plugins, Add marketplace with `ISenseHostility/jarno-plugins`, then Add plugin.
+In the desktop app: **+** next to the prompt box → **Plugins** → **Add marketplace** `ISenseHostility/jarno-plugins` → **Add plugin**.
 
-## Versions
+## Development
 
-Each plugin's version is in its `.claude-plugin/plugin.json`, bumped one major step per release (`1.0.0`, `2.0.0`, ...), and each release is a git tag `<plugin>--v<version>` (`input-notify--v1.0.0`).
+Each plugin is a hooks module (`hooks/register.ts[x]`) with tests in `tests/`:
 
-To release a plugin:
+```sh
+claude plugin validate <plugin>   # what the engine will load and refuse
+claude plugin test <plugin>       # run the tests
+```
 
-1. Raise `version` in its `plugin.json` to the next major (`2.0.0`).
-2. Commit, then run `claude plugin tag <plugin folder>`.
-3. Push with the tags: `git push --follow-tags`.
+### Releases
 
-`export.ps1` zips each plugin as `exports/<plugin>-v<major>.zip` (`powershell -File export.ps1`, or name the plugins to export).
+Versions step one major at a time (`1.0.0`, `2.0.0`, …) and each release is a tag `<plugin>--v<version>`.
+
+1. Raise `version` in `<plugin>/.claude-plugin/plugin.json`.
+2. Commit, then `claude plugin tag <plugin>`.
+3. `git push --follow-tags`.
+
+`powershell -File export.ps1` zips each plugin, license included, to `exports/<plugin>-v<major>.zip`.
 
 ## License
 
-MIT, see [LICENSE](LICENSE).
+[MIT](LICENSE) © 2026 ISenseHostility

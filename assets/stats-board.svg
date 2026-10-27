@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="540" viewBox="0 0 460 540" role="img" aria-label="The stats board pane with sample data: session length and busy time, context window, plan usage limits and tokens per agent">
+  <style>
+    text { font-family: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace; font-size: 13.5px; fill: #E6E6E6; }
+    .h { font-weight: 700; }
+    .dim { fill: #8C8C8C; }
+    .num { text-anchor: end; }
+    .ok { fill: #4EBA65; }
+    .bad { fill: #E0605A; }
+    .busy { fill: #D97757; }
+    .cached { fill: #7AA8F7; }
+  </style>
+  <rect width="460" height="540" rx="12" fill="#161616"/>
+  <rect x="12" y="14" width="436" height="512" rx="8" fill="none" stroke="#4A4A4A"/>
+  <rect x="26" y="5" width="50" height="18" fill="#161616"/>
+  <text x="32" y="19" class="h">Stats</text>
+
+  <text x="32" y="52" class="h">Session</text>
+  <text x="32" y="76">Length</text><text x="104" y="76">1h 23m</text>
+  <text x="32" y="100">Busy</text><text x="104" y="100" class="busy">48m 12s</text><text x="172" y="100" class="dim">(58% of the session)</text>
+
+  <text x="32" y="136" class="h">Context window</text>
+  <text x="32" y="160">Used</text>
+  <rect x="104" y="150" width="240" height="11" rx="2" fill="#333"/><rect x="104" y="150" width="149" height="11" rx="2" class="ok"/>
+  <text x="392" y="160" class="num ok">62%</text>
+  <text x="104" y="184" class="dim">124k of 200k tokens</text>
+
+  <text x="32" y="220" class="h">Plan usage limits</text>
+  <text x="32" y="244">5-hour</text>
+  <rect x="104" y="234" width="240" height="11" rx="2" fill="#333"/><rect x="104" y="234" width="74" height="11" rx="2" class="ok"/>
+  <text x="392" y="244" class="num ok">31%</text>
+  <text x="104" y="268" class="dim">resets in 2h 15m</text>
+  <text x="32" y="292">Weekly</text>
+  <rect x="104" y="282" width="240" height="11" rx="2" fill="#333"/><rect x="104" y="282" width="222" height="11" rx="2" class="bad"/>
+  <text x="392" y="292" class="num bad">93%</text>
+  <text x="104" y="316" class="dim">resets in 3d 4h</text>
+
+  <text x="32" y="352" class="h">Tokens</text>
+  <text x="32" y="376" class="dim">agent</text>
+  <text x="300" y="376" class="num dim">input</text><text x="362" y="376" class="num dim">cached</text><text x="424" y="376" class="num dim">output</text>
+  <text x="32" y="400">Main</text>
+  <text x="300" y="400" class="num">48k</text><text x="362" y="400" class="num cached">2.1M</text><text x="424" y="400" class="num">61k</text>
+  <text x="32" y="424">Explore: Find the pane…</text>
+  <text x="300" y="424" class="num">12k</text><text x="362" y="424" class="num cached">380k</text><text x="424" y="424" class="num">9.4k</text>
+  <text x="32" y="448">general-purpose: Review…</text>
+  <text x="300" y="448" class="num">6.1k</text><text x="362" y="448" class="num cached">120k</text><text x="424" y="448" class="num">4.2k</text>
+  <text x="32" y="472" class="h">Total</text>
+  <text x="300" y="472" class="num h">66k</text><text x="362" y="472" class="num h cached">2.6M</text><text x="424" y="472" class="num h">75k</text>
+  <text x="32" y="504" class="dim">input includes cache writes; cached = cache reads</text>
+</svg>
