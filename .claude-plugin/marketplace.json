@@ -1,5 +1,5 @@
 {
-  "name": "local-mods",
+  "name": "jarno-plugins",
   "owner": { "name": "ISenseHostility" },
   "metadata": { "description": "Claude Code mods: desktop notifications when Claude needs you, and a stats board pane." },
   "plugins": [
