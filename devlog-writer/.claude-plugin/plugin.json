@@ -1,1 +1,1 @@
-{ "name": "devlog-writer", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "A devlog agent: writes the session up as a self-contained HTML page in your app's style and keeps the devlog index current." }
+{ "name": "devlog-writer", "version": "2.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "A devlog agent: writes the session up as a self-contained HTML page in your app's style and keeps the devlog index current." }
