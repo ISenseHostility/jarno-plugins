@@ -5,6 +5,7 @@
 param([string[]]$Plugins)
 
 $ErrorActionPreference = 'Stop'
+Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
 $root = $PSScriptRoot
 $out = Join-Path $root 'exports'
 New-Item -ItemType Directory -Force $out | Out-Null
@@ -24,8 +25,18 @@ foreach ($dir in $dirs) {
 	Get-ChildItem $copy -Recurse -Force -Directory | Where-Object { $_.Name -eq 'types' -and $_.Parent.Name -eq '.claude-plugin' } | Remove-Item -Recurse -Force
 	Get-ChildItem $copy -Recurse -Force -File -Include '*.log', '.DS_Store' | Remove-Item -Force
 
+	# Entries are named with forward slashes, so the zip unpacks on macOS and Linux too
+	# (Windows PowerShell's Compress-Archive and ZipFile both write backslashes).
 	if (Test-Path $zip) { Remove-Item $zip -Force }
-	Compress-Archive -Path $copy -DestinationPath $zip
+	$archive = [IO.Compression.ZipFile]::Open($zip, [IO.Compression.ZipArchiveMode]::Create)
+	try {
+		foreach ($file in Get-ChildItem $copy -Recurse -Force -File) {
+			$entry = $manifest.name + '/' + $file.FullName.Substring($copy.Length + 1).Replace('\', '/')
+			[IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive, $file.FullName, $entry, [IO.Compression.CompressionLevel]::Optimal) | Out-Null
+		}
+	} finally {
+		$archive.Dispose()
+	}
 	Remove-Item $stage -Recurse -Force
 	Write-Output "$($manifest.name) $($manifest.version) -> exports/$(Split-Path $zip -Leaf)"
 }
