@@ -1,0 +1,7 @@
+# Built by export.ps1
+exports/
+# Laid by Claude Code at each load
+.claude-plugin/types/
+**/.claude-plugin/types/
+*.log
+.DS_Store

@@ -1,0 +1,31 @@
+# Zips each plugin as exports/<name>-v<major>.zip, the version read from its plugin.json.
+# Versions only bump the first number (1.0.0, 2.0.0, ...), so v1, v2, ... name them.
+#   powershell -File export.ps1             export every plugin
+#   powershell -File export.ps1 stats-board export one
+param([string[]]$Plugins)
+
+$ErrorActionPreference = 'Stop'
+$root = $PSScriptRoot
+$out = Join-Path $root 'exports'
+New-Item -ItemType Directory -Force $out | Out-Null
+
+$dirs = Get-ChildItem $root -Directory | Where-Object { Test-Path (Join-Path $_.FullName '.claude-plugin/plugin.json') }
+if ($Plugins) { $dirs = $dirs | Where-Object { $Plugins -contains $_.Name } }
+
+foreach ($dir in $dirs) {
+	$manifest = Get-Content (Join-Path $dir.FullName '.claude-plugin/plugin.json') -Raw | ConvertFrom-Json
+	$major = ($manifest.version -split '\.')[0]
+	$zip = Join-Path $out "$($manifest.name)-v$major.zip"
+
+	# Stage a clean copy: no generated types, logs or editor files.
+	$stage = Join-Path ([IO.Path]::GetTempPath()) ([guid]::NewGuid().ToString())
+	$copy = Join-Path $stage $manifest.name
+	Copy-Item $dir.FullName $copy -Recurse
+	Get-ChildItem $copy -Recurse -Force -Directory | Where-Object { $_.Name -eq 'types' -and $_.Parent.Name -eq '.claude-plugin' } | Remove-Item -Recurse -Force
+	Get-ChildItem $copy -Recurse -Force -File -Include '*.log', '.DS_Store' | Remove-Item -Force
+
+	if (Test-Path $zip) { Remove-Item $zip -Force }
+	Compress-Archive -Path $copy -DestinationPath $zip
+	Remove-Item $stage -Recurse -Force
+	Write-Output "$($manifest.name) $($manifest.version) -> exports/$(Split-Path $zip -Leaf)"
+}

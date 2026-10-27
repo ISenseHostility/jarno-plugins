@@ -1,0 +1,1 @@
+{ "name": "stats-board", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "description": "A docked stats pane: session length and busy time, context window fill, plan usage limits and tokens per agent.", "types": "./types/index.d.ts" }
