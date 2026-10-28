@@ -13,9 +13,9 @@ Before a hard-to-reverse design choice, have a second Claude argue against your 
 
 2. **Summon the opponent.** Run a second, headless Claude that argues for **Side B**:
    ```
-   claude -p "<prompt>" --allowedTools "Read,Grep,Glob" --output-format text
+   claude -p "<prompt>" --allowedTools "Read,Grep,Glob" --output-format text < /dev/null
    ```
-   Its prompt should include the question, the constraints and both options, and instruct it to:
+   The `< /dev/null` stops it from waiting 3 seconds for piped input. Its prompt should include the question, the constraints and both options, and instruct it to:
    - argue the strongest honest case for Side B, specific to this codebase (it may read files)
    - attack the weakest points of Side A
    - name the situations where Side B clearly wins
@@ -23,7 +23,7 @@ Before a hard-to-reverse design choice, have a second Claude argue against your 
 
 3. **Write your own case** for Side A with the same rules and length, without softening it after reading the opponent.
 
-4. **One rebuttal round.** Each side gets 2–3 sentences responding to the other's best point. For the opponent's rebuttal, run `claude -p` again with both cases included.
+4. **One rebuttal round.** Each side gets 2–3 sentences responding to the other's best point. For the opponent's rebuttal, run `claude -p` again the same way with both cases included.
 
 5. **Show it side by side:**
 
