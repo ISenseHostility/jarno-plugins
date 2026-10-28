@@ -127,6 +127,46 @@ A pane docked beside the conversation with the numbers you'd otherwise have to a
 
 > Claude Code's own git changes panel sits in the same spot. Close it with `/diff` (it stays closed) to give the board the room.
 
+## Hook mods
+
+Three extras in [`hook-mods/`](hook-mods) built on plain settings hooks and Node instead of the plugin engine. One script installs all three:
+
+```sh
+node hook-mods/install.js
+```
+
+It copies the scripts into `~/.claude`, backs up `~/.claude/settings.json`, and adds its hooks and status line next to yours without changing any you already have. Run it again to update; your edited `pet.json` and `rules.json` stay (`--force` replaces them). Every hook runs async, prints nothing to Claude's context and always exits 0.
+
+### 🐾 Terminal pet
+
+A small face at the start of the status line that reacts to the session, with a two-frame animation.
+
+```text
+ヽ(°〇°)ﾉ ‹whoa, risky!› Bit  │ Opus 5.5 │ jarno-plugins │ ctx 23%
+```
+
+- **Moods, highest first:** panicking (a risky Bash command such as `rm -rf`, `git push --force` or anything with `prod`), sad (the last test run failed), sweating and stressed (context over 70% and 90%), waiting (Claude needs you), working, happy (tests passed or a turn finished), asleep (5 minutes without events) and idle.
+- **Redesign it** in `~/.claude/pet/pet.json`: name, faces, bubbles, colours, thresholds and the risky patterns.
+- **Happiness:** a ♥ score that rises with passing tests and drops with failures, kept across sessions.
+- Test runs are written to `.claude/last-test-result` in the project, and a result another tool writes there counts too.
+
+### 🏆 Achievements
+
+Unlocks with a desktop toast, plus XP, levels and day streaks per project.
+
+- **Achievements:** First Light, Green Machine, Test Pilot, Clean Streak, Marathon, Night Owl, Polyglot, Comeback, Phoenix, Ported (a module in `PORT.md` turned `verified`), Compactor, Shipper and On a Roll, most with Bronze, Silver and Gold tiers.
+- **Add your own** in `~/.claude/achievements/rules.json`, which lists every metric a rule can use and the XP per event.
+- **Overview:** `~/.claude/hooks/achievements` shows what's unlocked and locked, each project's level and streak, and the latest unlocks. `--test-toast` sends a sample toast.
+- Events go to `~/.claude/achievements/events.jsonl`.
+
+### 🐍 Waiting-room snake
+
+Snake in a pane beside Claude Code that pauses itself the moment any session needs you.
+
+- **Launch:** `cc-play` splits the current Windows Terminal, WezTerm or tmux pane. In an IntelliJ or VS Code terminal it opens a small Windows Terminal window instead; split the terminal yourself and run `cc-play --here` to keep it inside.
+- **Keys:** arrows or WASD to move, `p` pause, `r` restart, `q` quit. The high score is saved.
+- **Claude:** "Claude needs you" or "Claude is done" pauses it with a bell; after you send a prompt it shows "Ready" and waits for a key, so the snake never starts by surprise.
+
 ## Agents
 
 ### Design and planning

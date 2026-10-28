@@ -1,0 +1,68 @@
+{
+  "_help": [
+    "Each achievement unlocks once per tier when its metric reaches `at`.",
+    "Add your own by copying an entry. Metrics you can use:",
+    "  sessionDays        days you started at least one session",
+    "  greenDays          days with at least one passing test run",
+    "  greenRuns          passing test runs in total",
+    "  redRuns            failing test runs in total",
+    "  cleanStreak        sessions in a row (finished) without a failing test",
+    "  longestSessionMin  longest session in minutes (a gap of 30+ min starts a new one)",
+    "  nightOwlDays       days you worked between 02:00 and 05:00",
+    "  projectsThisWeek   different projects worked in over the last 7 days",
+    "  comebacks          returns to a project untouched for 30+ days",
+    "  phoenixes          sessions where tests went from failing to passing",
+    "  portedModules      modules whose status in PORT.md became 'verified'",
+    "  maxCompactions     most compactions survived in one session",
+    "  tagsCreated        git tags / releases created",
+    "  tasksDone          tasks completed (TaskCompleted)",
+    "  turnsDone          turns Claude finished (Stop)",
+    "  prompts            prompts sent",
+    "  filesEdited        file edits",
+    "  sessions           sessions started",
+    "  dayStreak          current days-in-a-row streak (any project)",
+    "  installed          1 once this system is installed"
+  ],
+
+  "xp": {
+    "testPass": 10,
+    "testFail": 0,
+    "taskDone": 15,
+    "turnDone": 2,
+    "fileEdit": 1,
+    "prompt": 1,
+    "sessionStart": 5,
+    "tagCreated": 50,
+    "achievement": 50
+  },
+  "levels": { "firstLevelXp": 100, "growth": 1.3 },
+
+  "achievements": [
+    { "id": "installed", "name": "Achievement Hunter", "icon": "🎯", "description": "Installed the achievement system", "metric": "installed", "at": 1 },
+
+    { "id": "first-light", "name": "First Light", "icon": "🌅", "description": "Start the first session of the day", "metric": "sessionDays",
+      "tiers": [ { "tier": "Bronze", "at": 1 }, { "tier": "Silver", "at": 7 }, { "tier": "Gold", "at": 30 } ] },
+
+    { "id": "green-machine", "name": "Green Machine", "icon": "🟢", "description": "First passing test run of the day", "metric": "greenDays",
+      "tiers": [ { "tier": "Bronze", "at": 1 }, { "tier": "Silver", "at": 7 }, { "tier": "Gold", "at": 30 } ] },
+
+    { "id": "test-pilot", "name": "Test Pilot", "icon": "🧪", "description": "Green test runs", "metric": "greenRuns",
+      "tiers": [ { "tier": "Bronze", "at": 10 }, { "tier": "Silver", "at": 50 }, { "tier": "Gold", "at": 200 } ] },
+
+    { "id": "clean-streak", "name": "Clean Streak", "icon": "✨", "description": "10 sessions in a row without a failing test", "metric": "cleanStreak", "at": 10 },
+    { "id": "marathon", "name": "Marathon", "icon": "🏃", "description": "A single session longer than 2 hours", "metric": "longestSessionMin", "at": 120 },
+    { "id": "night-owl", "name": "Night Owl", "icon": "🦉", "description": "Working after 2 AM", "metric": "nightOwlDays",
+      "tiers": [ { "tier": "Bronze", "at": 1 }, { "tier": "Silver", "at": 5 }, { "tier": "Gold", "at": 20 } ] },
+    { "id": "polyglot", "name": "Polyglot", "icon": "🌍", "description": "Worked in 5 different projects this week", "metric": "projectsThisWeek", "at": 5 },
+    { "id": "comeback", "name": "Comeback", "icon": "🔁", "description": "Returned to a project untouched for 30+ days", "metric": "comebacks", "at": 1 },
+    { "id": "phoenix", "name": "Phoenix", "icon": "🔥", "description": "Tests went from failing to passing in the same session", "metric": "phoenixes",
+      "tiers": [ { "tier": "Bronze", "at": 1 }, { "tier": "Silver", "at": 10 }, { "tier": "Gold", "at": 50 } ] },
+    { "id": "ported", "name": "Ported", "icon": "📦", "description": "A module's status in PORT.md changed to verified", "metric": "portedModules",
+      "tiers": [ { "tier": "Bronze", "at": 1 }, { "tier": "Silver", "at": 10 }, { "tier": "Gold", "at": 50 } ] },
+    { "id": "compactor", "name": "Compactor", "icon": "🗜️", "description": "Survived 3 compactions in one session", "metric": "maxCompactions", "at": 3 },
+    { "id": "shipper", "name": "Shipper", "icon": "🚀", "description": "Created a git tag (a release)", "metric": "tagsCreated",
+      "tiers": [ { "tier": "Bronze", "at": 1 }, { "tier": "Silver", "at": 10 }, { "tier": "Gold", "at": 25 } ] },
+    { "id": "streaker", "name": "On a Roll", "icon": "📅", "description": "Days in a row with at least one session", "metric": "dayStreak",
+      "tiers": [ { "tier": "Bronze", "at": 3 }, { "tier": "Silver", "at": 7 }, { "tier": "Gold", "at": 30 } ] }
+  ]
+}

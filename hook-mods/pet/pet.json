@@ -1,0 +1,43 @@
+{
+  "name": "Bit",
+  "showName": true,
+  "showHappiness": true,
+  "happinessPerPass": 3,
+  "happinessPerFail": -5,
+
+  "sleepAfterMinutes": 5,
+  "sweatAtPercent": 70,
+  "stressAtPercent": 90,
+  "sadForMinutes": 30,
+  "happyForSeconds": 120,
+  "panicForSeconds": 20,
+
+  "riskyPatterns": [
+    "\\brm\\s+(-\\w*r\\w*f\\w*|-\\w*f\\w*r\\w*|(-r|-R|--recursive)\\s+(-f|--force)|(-f|--force)\\s+(-r|-R|--recursive))",
+    "\\bRemove-Item\\b.*-Recurse",
+    "\\b(rmdir|rd)\\s+/s\\b",
+    "\\bdel\\s+.*/s\\b",
+    "\\bgit\\s+push\\b.*(--force\\b|--force-with-lease|\\s-f\\b|\\s\\+\\S)",
+    "\\bgit\\s+reset\\s+--hard\\b",
+    "\\bgit\\s+clean\\s+-\\w*f",
+    "\\bgit\\s+branch\\s+-D\\b",
+    "\\b(DROP|TRUNCATE)\\s+(TABLE|DATABASE|SCHEMA)\\b",
+    "\\bprod(uction)?\\b",
+    "\\bterraform\\s+(apply|destroy)\\b",
+    "\\bkubectl\\s+delete\\b",
+    "\\bmkfs\\b",
+    "\\bdd\\s+if="
+  ],
+
+  "moods": {
+    "panicking": { "frames": ["ヽ(°〇°)ﾉ", "ﾉ(°〇°)ヽ"], "bubble": "whoa, risky!", "color": "red" },
+    "sad":       { "frames": ["(╥_╥)", "(T_T)"],         "bubble": "tests failed", "color": "blue" },
+    "stressed":  { "frames": ["(@_@;)", "(;@_@)"],       "bubble": "so full!!", "color": "red" },
+    "sweating":  { "frames": ["(•_•;)", "(;•_•)"],       "bubble": "getting full", "color": "yellow" },
+    "waiting":   { "frames": ["(•ω•)ﾉ", "(•ω•)ノ"],      "bubble": "psst, you!", "color": "magenta" },
+    "working":   { "frames": ["(ง •_•)ง", "ᕦ(•_•)ᕤ"],   "bubble": "", "color": "cyan" },
+    "happy":     { "frames": ["(^▽^)", "(^ᗜ^)"],         "bubble": "all done!", "testsBubble": "tests pass!", "color": "green" },
+    "asleep":    { "frames": ["(-_-) zZ", "(-_-) Zz"],   "bubble": "", "color": "gray" },
+    "idle":      { "frames": ["(•‿•)", "(-‿-)"],         "bubble": "", "color": "white" }
+  }
+}

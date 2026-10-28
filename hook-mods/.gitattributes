@@ -1,0 +1,3 @@
+# sh shims break with CRLF; cmd shims want it
+* text=auto eol=lf
+*.cmd text eol=crlf
