@@ -30,6 +30,7 @@ Be honest and brief. Don't change anything.
 
 ## Works with
 - Reads devlog-writer's `devlog/`, weekly-recap's `weekly-recaps/` and the reports above. A project with no devlog is judged from git and its README alone; say so.
+- A `PORT.md` (code-porter) means a port is under way: judge how close it is from the share of modules marked verified, and take the next unported module as the next step.
 - End your reply with **Suggested next**: other agents from this set that fit the top pick's next step, and why. For example premortem for a project that's almost there, or scope-cutter for one that keeps growing. Skip it if none fits.
 
 ## Safety

@@ -1,1 +1,1 @@
-{ "name": "project-switcher", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that reads devlogs, git activity and open reports across your projects and tells you where each one stands." }
+{ "name": "project-switcher", "version": "2.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that reads devlogs, git activity and open reports across your projects and tells you where each one stands." }

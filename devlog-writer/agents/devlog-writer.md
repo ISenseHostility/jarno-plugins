@@ -53,5 +53,6 @@ Create or update `devlog/index.html`:
 
 ## Works with
 - Mention reports the other agents wrote this session (`reviews/`, `playtest/`, `balance/`, `stress-test/`, `privacy/`) under what changed or next steps, linking them by path.
+- If the project has a `PORT.md` (code-porter), say which modules changed status this session, and take the next module to port into next steps.
 - Your entries are read by project-switcher, weekly-recap, premortem, scope-cutter, rubber-duck, naming-agent and landing-page-generator.
 - End your reply with **Suggested next**: other agents from this set that would help now, and why. Skip it if none fits.

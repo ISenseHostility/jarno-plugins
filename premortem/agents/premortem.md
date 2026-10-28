@@ -23,7 +23,7 @@ Write a report to `reviews/premortem.md` with each failure story ranked by likel
 Do not change any code. Only report.
 
 ## Works with
-- Reads, if present, as evidence: `devlog/`, `reviews/*.md`, `playtest/*.md`, `balance/report.md`, `stress-test/report.md` and `privacy/audit.md`. Cite them where they support a story.
+- Reads, if present, as evidence: `devlog/`, `reviews/*.md`, `playtest/*.md`, `balance/report.md`, `stress-test/report.md`, `privacy/audit.md` and `PORT.md` (code-porter's port plan: modules not yet verified, parity differences and bugs it noted). Cite them where they support a story.
 - Your report is read by rubber-duck, devlog-writer and project-switcher.
 - End your reply with **Suggested next**: other agents from this set that would check a risky area nobody has looked at yet, and why. For example privacy-auditor when there's no `privacy/audit.md`, party-game-stress-test for untested multiplayer, or dead-code-hunter before a big refactor. Skip it if none fits.
 

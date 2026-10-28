@@ -1,1 +1,1 @@
-{ "name": "premortem", "version": "1.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that imagines your launch or refactor failed three months from now and works backward to the likely causes." }
+{ "name": "premortem", "version": "2.0.0", "author": { "name": "ISenseHostility" }, "license": "MIT", "description": "An agent that imagines your launch or refactor failed three months from now and works backward to the likely causes." }
