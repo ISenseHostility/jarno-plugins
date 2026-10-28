@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="336" viewBox="0 0 600 336" role="img" aria-label="The waiting-room snake in a pane, with sample data: on the left a game in progress while Claude works, on the right the game paused because Claude needs you">
+  <style>
+    text { font-family: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace; font-size: 13px; fill: #DCDFE4; }
+    .h { font-weight: 700; }
+    .cap { fill: #8C8C8C; font-size: 12px; }
+  </style>
+  <defs>
+    <pattern id="checker" width="32" height="32" patternUnits="userSpaceOnUse" x="24" y="44">
+      <rect width="32" height="32" fill="#1c1c1c"/>
+      <rect x="16" width="16" height="16" fill="#262626"/>
+      <rect y="16" width="16" height="16" fill="#262626"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="336" rx="12" fill="#161616"/>
+<rect x="16" y="12" width="272" height="288" rx="6" fill="#121212"/>
+<text x="24" y="25"><tspan class="h" fill="#afff87">SNAKE</tspan><tspan fill="#fff"> 8</tspan><tspan fill="#808080"> ★31</tspan></text>
+<text x="280" y="25" text-anchor="end" fill="#5fd7ff">● working</text>
+<rect x="20" y="36" width="264" height="256" fill="none" stroke="#585858" stroke-width="1.5"/>
+<rect x="24" y="44" width="256" height="240" fill="url(#checker)"/>
+<rect x="232" y="108" width="8" height="8" fill="#ff5f5f"/>
+<rect x="184" y="140" width="8" height="8" fill="#87ff00"/>
+<rect x="176" y="140" width="8" height="8" fill="#5fd700"/>
+<rect x="168" y="140" width="8" height="8" fill="#5fd700"/>
+<rect x="160" y="140" width="8" height="8" fill="#5faf00"/>
+<rect x="152" y="140" width="8" height="8" fill="#5faf00"/>
+<rect x="152" y="148" width="8" height="8" fill="#5f8700"/>
+<rect x="152" y="156" width="8" height="8" fill="#5f8700"/>
+<rect x="152" y="164" width="8" height="8" fill="#5f8700"/>
+<rect x="144" y="164" width="8" height="8" fill="#00af00"/>
+<rect x="136" y="164" width="8" height="8" fill="#00af00"/>
+<rect x="128" y="164" width="8" height="8" fill="#008700"/>
+<rect x="120" y="164" width="8" height="8" fill="#008700"/>
+<rect x="176" y="284" width="100" height="16" fill="#121212"/>
+<text x="226" y="296" text-anchor="middle" fill="#808080">←↑↓→ p r q</text>
+<rect x="312" y="12" width="272" height="288" rx="6" fill="#121212"/>
+<text x="320" y="25"><tspan class="h" fill="#afff87">SNAKE</tspan><tspan fill="#fff"> 8</tspan><tspan fill="#808080"> ★31</tspan></text>
+<text x="576" y="25" text-anchor="end" fill="#ff5fd7">● needs you</text>
+<rect x="316" y="36" width="264" height="256" fill="none" stroke="#585858" stroke-width="1.5"/>
+<rect x="320" y="44" width="256" height="240" fill="#870087"/>
+<text x="448" y="120" text-anchor="middle" class="h" fill="#fff">! ! !</text>
+<text x="448" y="152" text-anchor="middle" class="h" fill="#fff">CLAUDE</text>
+<text x="448" y="168" text-anchor="middle" class="h" fill="#fff">NEEDS YOU</text>
+<text x="448" y="200" text-anchor="middle" class="h" fill="#fff">any key resumes</text>
+<rect x="472" y="284" width="100" height="16" fill="#121212"/>
+<text x="522" y="296" text-anchor="middle" fill="#808080">←↑↓→ p r q</text>
+  <text x="152" y="322" text-anchor="middle" class="cap">while Claude works</text>
+  <text x="448" y="322" text-anchor="middle" class="cap">paused, with a bell, when Claude needs you</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="548" viewBox="0 0 640 548" role="img" aria-label="The achievements overview with sample data: unlock count, the day streak, each project's level, XP and streak, achievement tiers and the latest unlocks">
+  <style>
+    text { font-family: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace; font-size: 13.5px; fill: #DCDFE4; white-space: pre; }
+    .h { font-weight: 700; }
+    .dim { fill: #8C8C8C; }
+    .gold { fill: #E5C07B; }
+    .magenta { fill: #C678DD; }
+    .cyan { fill: #56B6C2; }
+    .bronze { fill: #D7875F; }
+    .silver { fill: #BCBCBC; }
+    .on { fill: #98C379; }
+    .off { fill: #333333; }
+  </style>
+  <rect width="640" height="548" rx="12" fill="#161616"/>
+
+  <text x="24" y="38" class="h gold">🏆  Claude Code achievements</text>
+  <text x="24" y="60" class="dim">9/30 unlocked · 41 sessions · 63 green / 12 red test runs · clean streak 4</text>
+
+  <text x="24" y="96" class="h">Streaks</text>
+  <text x="48" y="118">Overall</text><text x="176" y="118" class="magenta">🔥 6 days</text>
+
+  <text x="24" y="154" class="h">Projects</text>
+  <text x="48" y="176">lyricle</text><text x="176" y="176" class="cyan">Lv  5</text>
+  <rect x="232" y="166" width="128" height="11" rx="2" class="off"/><rect x="232" y="166" width="40" height="11" rx="2" class="on"/>
+  <text x="372" y="176" class="dim">700 XP</text><text x="448" y="176" class="magenta">🔥6</text><text x="496" y="176" class="dim">2h ago</text>
+  <text x="48" y="198">jarno-plugins</text><text x="176" y="198" class="cyan">Lv  3</text>
+  <rect x="232" y="188" width="128" height="11" rx="2" class="off"/><rect x="232" y="188" width="40" height="11" rx="2" class="on"/>
+  <text x="372" y="198" class="dim">288 XP</text><text x="448" y="198" class="magenta">🔥2</text><text x="496" y="198" class="dim">just now</text>
+  <text x="48" y="220">tower-defense</text><text x="176" y="220" class="cyan">Lv  2</text>
+  <rect x="232" y="210" width="128" height="11" rx="2" class="off"/><rect x="232" y="210" width="72" height="11" rx="2" class="on"/>
+  <text x="372" y="220" class="dim">171 XP</text><text x="448" y="220" class="dim">–</text><text x="496" y="220" class="dim">9d ago</text>
+
+  <text x="24" y="256" class="h">Achievements</text>
+  <text x="48" y="278"><tspan class="h">🌅 First Light</tspan><tspan class="dim">  Start the first session of the day</tspan></text>
+  <text x="76" y="298"><tspan class="bronze">● Bronze</tspan>  <tspan class="silver">● Silver</tspan>  <tspan class="dim">○ Gold 30</tspan></text>
+  <text x="48" y="322"><tspan class="h">🧪 Test Pilot</tspan><tspan class="dim">  Green test runs</tspan></text>
+  <text x="76" y="342"><tspan class="bronze">● Bronze</tspan>  <tspan class="silver">● Silver</tspan>  <tspan class="dim">○ Gold 200</tspan></text>
+  <text x="48" y="366"><tspan class="h">🔥 Phoenix</tspan><tspan class="dim">  Tests went from failing to passing in the same session</tspan></text>
+  <text x="76" y="386"><tspan class="bronze">● Bronze</tspan>  <tspan class="dim">○ Silver 10  ○ Gold 50</tspan></text>
+  <text x="48" y="410" class="dim">🗜️ Compactor  Survived 3 compactions in one session</text>
+  <text x="76" y="430" class="dim">○ locked</text>
+  <text x="48" y="454" class="dim">⋮</text>
+
+  <text x="24" y="486" class="h">Recent unlocks</text>
+  <text x="48" y="508">🧪 <tspan class="h">Test Pilot</tspan> <tspan class="silver">Silver</tspan>  <tspan class="dim">lyricle · 2h ago</tspan></text>
+  <text x="48" y="530">🔥 <tspan class="h">Phoenix</tspan> <tspan class="bronze">Bronze</tspan>  <tspan class="dim">jarno-plugins · 1d ago</tspan></text>
+</svg>

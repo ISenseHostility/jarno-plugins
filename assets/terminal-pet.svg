@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="252" viewBox="0 0 640 252" role="img" aria-label="The terminal pet in seven moods at the start of the status line, with sample data: working, waiting, panicking, sweating, sad, happy and asleep">
+  <style>
+    text { font-family: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace; font-size: 13.5px; fill: #DCDFE4; white-space: pre; }
+    .label { fill: #6B6B6B; font-size: 12px; }
+    .dim { fill: #8C8C8C; }
+    .cyan { fill: #56B6C2; }
+    .magenta { fill: #C678DD; }
+    .red { fill: #E06C75; }
+    .yellow { fill: #E5C07B; }
+    .blue { fill: #61AFEF; }
+    .green { fill: #98C379; }
+    .gray { fill: #7F848E; }
+  </style>
+  <rect width="640" height="252" rx="12" fill="#161616"/>
+
+  <text x="24" y="38" class="label">working</text>
+  <text x="112" y="38" xml:space="preserve"><tspan class="cyan">ᕦ(•_•)ᕤ</tspan><tspan class="dim"> Bit ♥62</tspan>  <tspan class="dim">│</tspan> Opus 5.5 <tspan class="dim">│</tspan> lyricle <tspan class="dim">│</tspan> ctx 41%</text>
+
+  <text x="24" y="68" class="label">waiting</text>
+  <text x="112" y="68" xml:space="preserve"><tspan class="magenta">(•ω•)ﾉ</tspan><tspan class="dim"> ‹psst, you!› Bit ♥62</tspan>  <tspan class="dim">│</tspan> Opus 5.5 <tspan class="dim">│</tspan> lyricle <tspan class="dim">│</tspan> ctx 44%</text>
+
+  <text x="24" y="98" class="label">panicking</text>
+  <text x="112" y="98" xml:space="preserve"><tspan class="red">ヽ(°〇°)ﾉ</tspan><tspan class="dim"> ‹whoa, risky!› Bit ♥62</tspan>  <tspan class="dim">│</tspan> Opus 5.5 <tspan class="dim">│</tspan> lyricle <tspan class="dim">│</tspan> ctx 47%</text>
+
+  <text x="24" y="128" class="label">sweating</text>
+  <text x="112" y="128" xml:space="preserve"><tspan class="yellow">(•_•;)</tspan><tspan class="dim"> ‹getting full› Bit ♥62</tspan>  <tspan class="dim">│</tspan> Opus 5.5 <tspan class="dim">│</tspan> lyricle <tspan class="dim">│</tspan> ctx 76%</text>
+
+  <text x="24" y="158" class="label">sad</text>
+  <text x="112" y="158" xml:space="preserve"><tspan class="blue">(╥_╥)</tspan><tspan class="dim"> ‹tests failed› Bit ♥57</tspan>  <tspan class="dim">│</tspan> Opus 5.5 <tspan class="dim">│</tspan> lyricle <tspan class="dim">│</tspan> ctx 23%</text>
+
+  <text x="24" y="188" class="label">happy</text>
+  <text x="112" y="188" xml:space="preserve"><tspan class="green">(^▽^)</tspan><tspan class="dim"> ‹tests pass!› Bit ♥60</tspan>  <tspan class="dim">│</tspan> Opus 5.5 <tspan class="dim">│</tspan> lyricle <tspan class="dim">│</tspan> ctx 25%</text>
+
+  <text x="24" y="218" class="label">asleep</text>
+  <text x="112" y="218" xml:space="preserve"><tspan class="gray">(-_-) zZ</tspan><tspan class="dim"> Bit ♥60</tspan>  <tspan class="dim">│</tspan> Opus 5.5 <tspan class="dim">│</tspan> lyricle <tspan class="dim">│</tspan> ctx 25%</text>
+</svg>

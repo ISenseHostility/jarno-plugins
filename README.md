@@ -19,49 +19,94 @@
 
 Install any of them on its own: each one works without the others, and they get more out of each other together (see [How they work together](#how-they-work-together)).
 
-**Mods** hook into Claude Code itself and are always on.
+### Mods
 
-| | Plugin | Version | What it does |
-| --- | --- | --- | --- |
-| 🔔 | [input-notify](#-input-notify) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Finput-notify%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="input-notify version"> | Desktop notification when Claude needs you |
-| 📊 | [stats-board](#-stats-board) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fstats-board%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="stats-board version"> | Docked pane: session, context, plan limits, tokens |
+Always on: they hook into Claude Code itself.
 
-**Agents** are subagents. You never have to call them: Claude hands them the work when the situation under *Used when* comes up. You can still ask for one by name (*"use the premortem agent"*) or pick it in `/agents`.
+| Mod | What it does | Version |
+| --- | --- | :-: |
+| 🔔 [input-notify](#-input-notify) | Desktop notification when Claude needs you | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Finput-notify%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="input-notify version"> |
+| 📊 [stats-board](#-stats-board) | Docked pane: session, context, plan limits, tokens per agent | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fstats-board%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="stats-board version"> |
 
-| | Agent | Version | What it does | Used when |
-| --- | --- | --- | --- | --- |
-| 🦆 | [rubber-duck](#-rubber-duck) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Frubber-duck%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="rubber-duck version"> | Questions your design before you build it | Before a non-trivial feature or architecture decision |
-| ✂️ | [scope-cutter](#️-scope-cutter) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fscope-cutter%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="scope-cutter version"> | Cuts an idea down to its smallest valuable version | When a feature or project idea comes up or keeps growing |
-| 🪦 | [premortem](#-premortem) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fpremortem%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="premortem version"> | Imagines the launch failed and finds out why | Before a launch, store submission, big refactor or migration |
-| 🏷️ | [naming-agent](#️-naming-agent) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fnaming-agent%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="naming-agent version"> | Names things and checks for collisions | Whenever something new needs a name |
-| 🎮 | [playtest-bot](#-playtest-bot) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fplaytest-bot%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="playtest-bot version"> | Plays your browser game and reports the bugs | After gameplay or UI changes to a browser game |
-| 🐣 | [tutorial-tester](#-tutorial-tester) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Ftutorial-tester%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="tutorial-tester version"> | Plays the first minutes as a total beginner | After changing onboarding or the start of a browser game |
-| ⚖️ | [balance-sim](#️-balance-sim) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fbalance-sim%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="balance-sim version"> | Simulates matches to find over- and underpowered units | After changing stats or adding units, towers or enemies |
-| 🧃 | [juice-reviewer](#-juice-reviewer) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fjuice-reviewer%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="juice-reviewer version"> | Makes a flat game feel satisfying | When a game works but feels flat, or after new mechanics |
-| 📱 | [party-game-stress-test](#-party-game-stress-test) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fparty-game-stress-test%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="party-game-stress-test version"> | Floods a phone-controller party game with fake players | After changing networking, rooms, joining or game state |
-| 💬 | [error-message-reviewer](#-error-message-reviewer) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Ferror-message-reviewer%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="error-message-reviewer version"> | Rewrites vague, technical or blaming error texts | Before a release, or after new flows, forms or empty states |
-| 🪓 | [dead-code-hunter](#-dead-code-hunter) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fdead-code-hunter%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="dead-code-hunter version"> | Proves which code, assets and dependencies are unused | Before a release or refactor, or when asked what can go |
-| 🔒 | [privacy-auditor](#-privacy-auditor) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fprivacy-auditor%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="privacy-auditor version"> | Maps your app's data and drafts the store forms | Before publishing, or after adding analytics, accounts, permissions or SDKs |
-| 🌐 | [i18n-filler](#-i18n-filler) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fi18n-filler%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="i18n-filler version"> | Fills in missing translations | After adding or changing user-facing strings |
-| 🚀 | [landing-page-generator](#-landing-page-generator) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Flanding-page-generator%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="landing-page-generator version"> | Builds a landing page in your app's style | When a project needs a public page |
-| 📓 | [devlog-writer](#-devlog-writer) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fdevlog-writer%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="devlog-writer version"> | Writes the session up as an HTML devlog | At the end of a work session |
-| 🧭 | [project-switcher](#-project-switcher) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fproject-switcher%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="project-switcher version"> | Tells you where every project stands | When you ask what to work on next, or come back after a break |
-| 🗓️ | [weekly-recap](#️-weekly-recap) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fweekly-recap%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="weekly-recap version"> | Turns the week's commits into a recap page | At the end of the week, or when asked what you built |
+### Agents
 
-**Skills** run in the main conversation, so they can stop and ask you along the way. Claude loads one by itself when the task matches.
+Subagents you never have to call: Claude hands them the work when the situation under *Used when* comes up. You can still ask for one by name (*"use the premortem agent"*) or pick it in `/agents`.
 
-| | Skill | Version | What it does | Used when |
-| --- | --- | --- | --- | --- |
-| 🔁 | [code-porter](#-code-porter) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fcode-porter%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="code-porter version"> | Ports code without changing what it does | Code moves to another language, framework, library or major version |
-| ⚔️ | [design-debate](#️-design-debate) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fdesign-debate%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="design-debate version"> | Has a second Claude argue for the option you're leaning against | A hard-to-reverse design choice, or when you say "debate this" |
+**Design and planning**
+
+| Agent | What it does | Used when | Version |
+| --- | --- | --- | :-: |
+| 🦆 [rubber-duck](#-rubber-duck) | Questions your design before you build it | Before a non-trivial feature or architecture decision | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Frubber-duck%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="rubber-duck version"> |
+| ✂️ [scope-cutter](#️-scope-cutter) | Cuts an idea down to its smallest valuable version | A feature or project idea comes up or keeps growing | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fscope-cutter%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="scope-cutter version"> |
+| 🪦 [premortem](#-premortem) | Imagines the launch failed and finds out why | Before a launch, store submission, big refactor or migration | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fpremortem%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="premortem version"> |
+| 🏷️ [naming-agent](#️-naming-agent) | Names things and checks for collisions | Something new needs a name | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fnaming-agent%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="naming-agent version"> |
+
+**Game testing**
+
+| Agent | What it does | Used when | Version |
+| --- | --- | --- | :-: |
+| 🎮 [playtest-bot](#-playtest-bot) | Plays your browser game and reports the bugs | After gameplay or UI changes to a browser game | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fplaytest-bot%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="playtest-bot version"> |
+| 🐣 [tutorial-tester](#-tutorial-tester) | Plays the first minutes as a total beginner | After changing onboarding or the start of a browser game | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Ftutorial-tester%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="tutorial-tester version"> |
+| ⚖️ [balance-sim](#️-balance-sim) | Simulates matches to find over- and underpowered units | After changing stats or adding units, towers or enemies | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fbalance-sim%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="balance-sim version"> |
+| 🧃 [juice-reviewer](#-juice-reviewer) | Makes a flat game feel satisfying | A game works but feels flat, or after new mechanics | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fjuice-reviewer%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="juice-reviewer version"> |
+| 📱 [party-game-stress-test](#-party-game-stress-test) | Floods a phone-controller party game with fake players | After changing networking, rooms, joining, reconnects or game state | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fparty-game-stress-test%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="party-game-stress-test version"> |
+
+**Code and release**
+
+| Agent | What it does | Used when | Version |
+| --- | --- | --- | :-: |
+| 💬 [error-message-reviewer](#-error-message-reviewer) | Rewrites vague, technical or blaming error texts | Before a release, or after new flows, forms or empty states | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Ferror-message-reviewer%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="error-message-reviewer version"> |
+| 🪓 [dead-code-hunter](#-dead-code-hunter) | Proves which code, assets and dependencies are unused | Before a release or refactor, or when asked what can go | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fdead-code-hunter%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="dead-code-hunter version"> |
+| 🔒 [privacy-auditor](#-privacy-auditor) | Maps your app's data and drafts the store forms and policy | Before publishing, or after adding analytics, accounts, permissions or SDKs | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fprivacy-auditor%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="privacy-auditor version"> |
+| 🌐 [i18n-filler](#-i18n-filler) | Fills in missing translations | After adding or changing user-facing strings | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fi18n-filler%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="i18n-filler version"> |
+| 🚀 [landing-page-generator](#-landing-page-generator) | Builds a landing page in your app's style | A project needs a public page | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Flanding-page-generator%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="landing-page-generator version"> |
+
+**Progress**
+
+| Agent | What it does | Used when | Version |
+| --- | --- | --- | :-: |
+| 📓 [devlog-writer](#-devlog-writer) | Writes the session up as an HTML devlog | At the end of a work session | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fdevlog-writer%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="devlog-writer version"> |
+| 🧭 [project-switcher](#-project-switcher) | Tells you where every project stands | You ask what to work on next, or come back after a break | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fproject-switcher%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="project-switcher version"> |
+| 🗓️ [weekly-recap](#️-weekly-recap) | Turns the week's commits into a recap page | At the end of the week, or when asked what you built | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fweekly-recap%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="weekly-recap version"> |
+
+### Skills
+
+They run in the main conversation, so they can stop and ask you along the way. Claude loads one by itself when the task matches.
+
+| Skill | What it does | Used when | Version |
+| --- | --- | --- | :-: |
+| 🔁 [code-porter](#-code-porter) | Ports code without changing what it does | Code moves to another language, framework, library or major version | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fcode-porter%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="code-porter version"> |
+| ⚔️ [design-debate](#️-design-debate) | Has a second Claude argue for the option you're leaning against | A hard-to-reverse design choice, or when you say "debate this" | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fdesign-debate%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="design-debate version"> |
+
+### Hook mods (installed by script)
+
+Not plugins: plain settings hooks, all three installed with [one script](#hook-mods).
+
+| Hook mod | What it does |
+| --- | --- |
+| 🐾 [Terminal pet](#-terminal-pet) | A face in the status line that reacts to the session |
+| 🏆 [Achievements](#-achievements) | Unlocks, XP, levels and day streaks per project |
+| 🐍 [Waiting-room snake](#-waiting-room-snake) | Snake beside Claude Code that pauses when Claude needs you |
 
 ## How they work together
 
-- **Shared folders.** Agents write their reports to fixed folders in your project, and other agents read them when they're there: a playtest report feeds the juice review, every report feeds the premortem, and devlogs feed the project overview and the weekly recap. Without those files, each agent works from the code alone.
-- **PORT.md.** code-porter keeps its plan and per-module status in `PORT.md`, which devlog-writer, project-switcher and premortem read, and it uses the premortem and dead-code reports when they exist.
+- **Shared folders.** Agents write their reports to fixed folders in your project, and other agents read them when they're there (see the table below). Without those files, each agent works from the code alone.
 - **Design first.** rubber-duck questions your plan; when that turns up a real fork with two reasonable options, design-debate argues both before you pick, and scope-cutter keeps the winner small.
 - **Suggested next.** Every agent ends with the other agents that would help now, such as i18n-filler after error texts are rewritten, or privacy-auditor when the premortem finds no privacy audit. Claude can hand the work on without you asking.
-- **The mods on top.** stats-board counts each agent's tokens on its own row, and input-notify tells you when Claude is waiting on you again.
+- **code-porter** reads the premortem and dead-code reports before it plans (dead code is listed, not ported), hands a big port to premortem first when there's no recent one, and keeps its plan and per-module status in `PORT.md`, which devlog-writer, project-switcher and premortem read.
+- **The mods on top.** stats-board counts each agent's tokens on its own row, and input-notify tells you when Claude is waiting on you again. The hook mods skip subagents and headless `claude -p` runs, so design-debate's opponent never moves the pet, the snake or your achievements.
+
+| Folder | Written by | Read by |
+| --- | --- | --- |
+| `devlog/` | devlog-writer | project-switcher, weekly-recap, premortem, scope-cutter, rubber-duck, naming-agent, landing-page-generator |
+| `reviews/` | premortem, error-message-reviewer, dead-code-hunter, juice-reviewer | premortem, devlog-writer, project-switcher, weekly-recap, rubber-duck (the premortem), i18n-filler (dead code, error messages), code-porter (premortem, dead code) |
+| `playtest/` | playtest-bot, tutorial-tester | juice-reviewer, error-message-reviewer, party-game-stress-test, premortem, devlog-writer, project-switcher, weekly-recap |
+| `balance/` | balance-sim | juice-reviewer, premortem, devlog-writer, project-switcher, weekly-recap |
+| `stress-test/` | party-game-stress-test | premortem, devlog-writer, project-switcher, weekly-recap |
+| `privacy/` | privacy-auditor | landing-page-generator (the policy), premortem, devlog-writer, project-switcher, weekly-recap |
+| `landing/` | landing-page-generator | privacy-auditor (checks the page's claims) |
+| `weekly-recaps/` | weekly-recap, in the projects folder | project-switcher |
+| `PORT.md` | code-porter | devlog-writer, project-switcher, premortem, the [achievements](#-achievements) hook mod (Ported) |
 
 ```mermaid
 flowchart LR
@@ -82,17 +127,17 @@ flowchart LR
   devlog --> recap
   devlog --> premortem
   devlog --> scope[scope-cutter]
-  reviews --> premortem
-  reviews --> switcher
+  devlog --> duck[rubber-duck]
+  devlog --> naming[naming-agent]
+  devlog --> landing_gen
+  reviews --> duck
   reviews --> i18n[i18n-filler]
+  reviews --> porter[code-porter]
   playtest --> juice
   playtest --> errors
-  playtest --> premortem
+  playtest --> stress_test
   balance --> juice
-  balance --> premortem
-  stress --> premortem
   privacy --> landing_gen
-  privacy --> premortem
   landing --> privacy_aud
   recaps --> switcher
 
@@ -100,7 +145,9 @@ flowchart LR
   class devlog,playtest,balance,stress,privacy,reviews,landing,recaps folder
 ```
 
-Agents that run commands or write files only write inside their own folder, treat what they read (code, git history, web pages) as data rather than instructions, and keep secrets out of their reports.
+Not drawn, to keep it readable: premortem, devlog-writer, project-switcher and weekly-recap also read every report folder.
+
+Agents only write inside their own folder (i18n-filler: only the non-source locale files), treat what they read (code, git history, web pages) as data rather than instructions, and keep secrets out of their reports.
 
 ## Mods
 
@@ -110,9 +157,10 @@ A desktop notification whenever Claude is waiting on you, so you can look away w
 
 <img src="assets/notification.svg" width="380" alt="A Windows notification titled Claude - lyricle with Claude's question">
 
-- **When:** Claude asks a question, needs a permission or other input, or finishes a turn that ran 20 seconds or more.
-- **Where:** a Windows tray notification; on other systems, the terminal's own notification.
-- **Titles:** `Claude - <project>` in an IntelliJ terminal (the `.idea` project's name), otherwise `Claude Code needs you`.
+- **When:** Claude asks a question, needs a permission or other input, or finishes a turn that ran 20 seconds or more. Claude Code's own "still waiting" reminder shows too, unless that turn already notified you.
+- **What it says:** the question, the permission request, or `Done after 42 s:` and the start of Claude's answer.
+- **Where:** a Windows tray notification; on other systems, the terminal's own notification, or a toast inside Claude Code when that can't be sent.
+- **Titles:** `Claude - <project>` in an IntelliJ terminal (the `.idea` project's name, else the folder's), otherwise `Claude Code needs you`.
 - Two triggers within 5 seconds show once.
 
 ### 📊 stats-board
@@ -121,10 +169,11 @@ A pane docked beside the conversation with the numbers you'd otherwise have to a
 
 <img src="assets/stats-board.svg" width="460" alt="The stats board pane with sample data">
 
-- **Session:** how long it has been open, and how much of that Claude spent working (time waiting on you is left out).
-- **Context window:** how full it is.
-- **Plan usage limits:** the 5-hour and weekly windows, with when each resets. Shown on a Claude subscription.
-- **Tokens per agent:** input, cached and output, for the main conversation and each subagent.
+- **Session:** how long it has been open, and how much of that Claude spent working (time waiting on you, for a question or a permission, is left out).
+- **Context window:** how full it is, in percent and tokens.
+- **Plan usage limits:** the 5-hour and weekly windows, with when each resets. Shown on a Claude subscription, from the first reply on.
+- **Tokens per agent:** input (cache writes included), cached and output, for the main conversation and each subagent, with a total.
+- Bars turn yellow from 70% and red from 90%.
 - Opens by itself in a fullscreen terminal from 144 columns; `/stats-board` opens it at any width. `/clear` starts the counts over.
 
 > Claude Code's own git changes panel sits in the same spot. Close it with `/diff` (it stays closed) to give the board the room.
@@ -137,37 +186,44 @@ Three extras in [`hook-mods/`](hook-mods) built on plain settings hooks and Node
 node hook-mods/install.js
 ```
 
-It copies the scripts into `~/.claude`, backs up `~/.claude/settings.json`, and adds its hooks and status line next to yours without changing any you already have. Run it again to update; your edited `pet.json` and `rules.json` stay (`--force` replaces them). Every hook runs async, prints nothing to Claude's context and always exits 0.
+- It copies the scripts into `~/.claude` (or `CLAUDE_CONFIG_DIR`), backs up `~/.claude/settings.json` to `~/.claude/backups/`, and adds its hooks next to yours without changing any you already have.
+- The pet needs the status line. If you already have your own, it's kept, and the installer prints the command to use instead.
+- `cc-play` goes into `~/.local/bin` when that folder exists; otherwise add `~/.claude/minigame` to your PATH.
+- Run it again to update; your edited `pet.json` and `rules.json` stay (`--force` replaces them).
+- Every hook runs async, prints nothing to Claude's context and always exits 0.
 
 ### 🐾 Terminal pet
 
-A small face at the start of the status line that reacts to the session, with a two-frame animation.
+A small face at the start of the status line that reacts to the session, with a two-frame animation, followed by the model, the folder and how full the context is.
 
-```text
-ヽ(°〇°)ﾉ ‹whoa, risky!› Bit  │ Opus 5.5 │ jarno-plugins │ ctx 23%
-```
+<img src="assets/terminal-pet.svg" width="640" alt="The terminal pet in seven moods at the start of the status line">
 
-- **Moods, highest first:** panicking (a risky Bash command such as `rm -rf`, `git push --force` or anything with `prod`), sad (the last test run failed), sweating and stressed (context over 70% and 90%), waiting (Claude needs you), working, happy (tests passed or a turn finished), asleep (5 minutes without events) and idle.
+- **Moods, highest first:** panicking (a risky Bash command such as `rm -rf`, `git push --force`, `DROP TABLE` or anything with `prod`), sad (the last test run failed, for 30 minutes), stressed and sweating (context over 90% and 70%), waiting (Claude needs you), working, happy (tests passed or a turn finished), asleep (5 minutes without events) and idle.
 - **Redesign it** in `~/.claude/pet/pet.json`: name, faces, bubbles, colours, thresholds and the risky patterns.
-- **Happiness:** a ♥ score that rises with passing tests and drops with failures, kept across sessions.
-- Test runs are written to `.claude/last-test-result` in the project, and a result another tool writes there counts too.
+- **Happiness:** a ♥ score that rises 3 with each passing test run and drops 5 with each failing one, kept across sessions.
+- **Test runs** are spotted from the Bash command (`npm test`, `pytest`, `cargo test`, `gradle test`, `claude plugin test` and more) and written to `.claude/last-test-result` in the project. A result another tool writes there counts too.
 
 ### 🏆 Achievements
 
-Unlocks with a desktop toast, plus XP, levels and day streaks per project.
+Unlocks with a desktop toast and a line in the terminal, plus XP, levels and day streaks per project.
 
-- **Achievements:** First Light, Green Machine, Test Pilot, Clean Streak, Marathon, Night Owl, Polyglot, Comeback, Phoenix, Ported (a module in `PORT.md` turned `verified`), Compactor, Shipper and On a Roll, most with Bronze, Silver and Gold tiers.
+<img src="assets/achievements.svg" width="640" alt="The achievements overview with sample data">
+
+- **Achievements:** Achievement Hunter, First Light, Green Machine, Test Pilot, Clean Streak, Marathon, Night Owl, Polyglot, Comeback, Phoenix, Ported (a module in `PORT.md` turned `verified`), Compactor, Shipper and On a Roll; most with Bronze, Silver and Gold tiers.
+- **XP** comes from session starts, prompts, edits, finished turns and tasks, passing tests, new git tags and unlocks; the first level takes 100 XP and each next one 30% more.
 - **Add your own** in `~/.claude/achievements/rules.json`, which lists every metric a rule can use and the XP per event.
-- **Overview:** `~/.claude/hooks/achievements` shows what's unlocked and locked, each project's level and streak, and the latest unlocks. `--test-toast` sends a sample toast.
+- **Overview:** `~/.claude/hooks/achievements` (`achievements.cmd` on Windows) shows what's unlocked and locked, each project's level and streak, and the latest unlocks. `--test-toast` sends a sample toast.
 - Events go to `~/.claude/achievements/events.jsonl`.
 
 ### 🐍 Waiting-room snake
 
 Snake in a pane beside Claude Code that pauses itself the moment any session needs you.
 
-- **Launch:** `cc-play` splits the current Windows Terminal, WezTerm or tmux pane. In an IntelliJ or VS Code terminal it opens a small Windows Terminal window instead; split the terminal yourself and run `cc-play --here` to keep it inside.
-- **Keys:** arrows or WASD to move, `p` pause, `r` restart, `q` quit. The high score is saved.
-- **Claude:** "Claude needs you" or "Claude is done" pauses it with a bell; after you send a prompt it shows "Ready" and waits for a key, so the snake never starts by surprise.
+<img src="assets/snake.svg" width="600" alt="The snake pane while Claude works, and paused because Claude needs you">
+
+- **Launch:** `cc-play` splits the current Windows Terminal, WezTerm or tmux pane. In an IntelliJ or VS Code terminal it opens a small Windows Terminal window instead; split the terminal yourself and run `cc-play --here` to keep it inside. `cc-play --window` always opens the small window.
+- **Keys:** arrows, WASD or hjkl to move, `p` or space to pause, `r` restart, `q` quit. The high score is saved.
+- **Claude:** the top right shows whether Claude is working, done or needs you. "Claude needs you" or "Claude is done" pauses the game with a bell; after you send a prompt it shows "Ready" and waits for a key, so the snake never starts by surprise.
 
 ## Agents
 
@@ -175,28 +231,28 @@ Snake in a pane beside Claude Code that pauses itself the moment any session nee
 
 #### 🦆 rubber-duck
 
-Asks one or two pointed questions at a time about what could go wrong, follows up on vague answers and points out where your plan and the code disagree. Never writes or suggests code; ends with the decisions made and the open risks.
+Asks one or two pointed questions at a time about what could go wrong, follows up on vague answers and points out where your plan and the code disagree. Never writes or suggests code; ends with the decisions made and the open risks. Builds on the newest devlog and the premortem when they're there.
 
 - **Used when:** before a non-trivial feature or architecture decision.
 
 #### ✂️ scope-cutter
 
-Finds the one core value, then splits the rest into v1, later, never and "fake it first", with a rough size for v1.
+Asks at most two questions, finds the one core value, then splits the rest into v1, later, never and "fake it first", with a rough size for v1. Says so when the whole idea seems unnecessary.
 
-- **Used when:** when a feature or project idea comes up or keeps growing.
+- **Used when:** a feature or project idea comes up or keeps growing.
 
 #### 🪦 premortem
 
-Failure stories across performance, data, security, store rules, users, operations and scope, ranked by likelihood × impact, each with warning signs and one cheap prevention. Uses the other agents' reports as evidence.
+Failure stories across performance, data, security and privacy, store rules, users, operations and scope, ranked by likelihood × impact, each with warning signs and one cheap prevention. Uses the other agents' reports as evidence and points to the files behind each story.
 
-- **Used when:** before a launch, store submission, big refactor or migration.
+- **Used when:** before a launch, release, store submission, big refactor or migration.
 - **Writes:** `reviews/premortem.md`
 
 #### 🏷️ naming-agent
 
-8–10 names in mixed styles, each checked against apps, package registries, domains, big-brand trademarks and Dutch and English meanings, with a top three. A quick search, not a legal check.
+8–10 names in mixed styles, each checked against apps, package registries (pub.dev, npm, Maven Central), domains, big-brand trademarks and Dutch and English meanings, with a verdict and a top three. Asks about the vibe first if it's unclear. A quick search, not a legal check.
 
-- **Used when:** whenever something new needs a name.
+- **Used when:** something new needs a name: an app, project, feature, package or repo.
 
 ### Game testing
 
@@ -205,102 +261,103 @@ Failure stories across performance, data, security, store rules, users, operatio
 Plays a normal round with Playwright, then tries to break it: spam clicks, resizing to phone sizes, refresh and back mid-game, odd key combos, overlapping actions, idling. Per bug: repro steps, expected vs actual, console errors, screenshot and severity.
 
 - **Used when:** after gameplay or UI changes to a browser game.
-- **Writes:** `playtest/report.md`
+- **Writes:** `playtest/report.md` and `playtest/screenshots/`
 - **Needs:** Node and Playwright in the game's project.
 
 #### 🐣 tutorial-tester
 
-Plays without reading the code or docs and logs its thoughts as a player: confusion points with screenshots, unexplained mechanics, likely quit moments and what worked.
+Plays the first five minutes knowing only what the screen shows (no code, docs or other reports first) and logs its thoughts as a player: a timeline, confusion points with screenshots, unexplained mechanics, likely quit moments and what worked.
 
-- **Used when:** after changing onboarding or the start of a browser game.
-- **Writes:** `playtest/tutorial-report.md`
+- **Used when:** after changing onboarding, the tutorial or the start of a browser game.
+- **Writes:** `playtest/tutorial-report.md` and `playtest/screenshots/tutorial-…`
 - **Needs:** Node and Playwright in the game's project.
 
 #### ⚖️ balance-sim
 
-Runs 1,000+ headless matches on the real game logic and reports win rate, damage, cost efficiency and dominant strategies, with tweaks marked as suggestions.
+Runs 1,000+ headless matches on the real game logic and reports win rate, damage, cost efficiency and dominant strategies, with the top three over- and underperformers and tweaks marked as suggestions. Never changes your stat files.
 
 - **Used when:** after changing stats or adding units, towers or enemies.
-- **Writes:** `balance/report.md`
+- **Writes:** `balance/report.md`, plus the simulation script if it has to write one
 
 #### 🧃 juice-reviewer
 
-Goes through every action and event and its current feedback, then suggests quick wins, bigger upgrades and where not to overdo it, specific to your mechanics.
+Goes through every action and event and its current feedback, then suggests quick wins, bigger upgrades and where not to overdo it, specific to your mechanics. Starts from the moments playtests found flat and units whose feedback doesn't match their power.
 
-- **Used when:** when a game works but feels flat, or after new mechanics.
+- **Used when:** a game works but feels flat, or after new mechanics.
 - **Writes:** `reviews/juice.md`
 
 #### 📱 party-game-stress-test
 
-Writes a script with fake clients and runs join storms, over-capacity joins, reconnects, host refreshes, input spam, wrong-phase inputs, odd names, lag and full random games. Only against servers it started locally.
+Writes a script with fake clients and runs join storms, over-capacity joins, reconnects, host refreshes, input spam, wrong-phase inputs, odd names, lag and full random games, watching for crashes, desyncs, stuck and ghost players and memory growth. Only against servers it started locally, and it stops them afterwards.
 
-- **Used when:** after changing networking, rooms, joining or game state.
-- **Writes:** `stress-test/`
+- **Used when:** after changing networking, rooms, joining, reconnects or game state.
+- **Writes:** `stress-test/report.md` and the test script
 
 ### Code and release
 
 #### 💬 error-message-reviewer
 
-Finds every error, toast, dialog, validation message and empty state and flags the vague, technical, blaming, dead-end and inconsistent ones, with better wording, worst first.
+Finds every error, toast, dialog, validation message and empty state and flags the vague, technical, blaming, dead-end and inconsistent ones, with better wording, worst first. Messages players got stuck on in a playtest rank higher.
 
-- **Used when:** before a release, or after new flows, forms or empty states.
+- **Used when:** before a release, or after new flows, forms, error handling or empty states.
 - **Writes:** `reviews/error-messages.md`
 
 #### 🪓 dead-code-hunter
 
-Endpoints, widgets, routes, assets, translations and packages, each with the evidence: safe to delete, probably dead, or looks dead but isn't.
+Endpoints, widgets, routes, assets, translations, packages, commented-out code and stale feature flags, each with the evidence: safe to delete, probably dead, or looks dead but isn't. Unused translation keys get their own list so i18n-filler skips them. Never deletes anything.
 
 - **Used when:** before a release or refactor, or when asked what can go.
 - **Writes:** `reviews/dead-code.md`
 
 #### 🔒 privacy-auditor
 
-Traces what is collected, stored and sent and what SDKs do, flags surprises, and drafts the Play Data Safety and App Store answers plus a plain-language privacy policy. Drafts for a human to review, not legal advice.
+Traces what is collected, stored and sent and what SDKs do, flags surprises, checks your landing page and store listings against the code, and drafts the Play Data Safety and App Store answers plus a plain-language privacy policy. Drafts for a human to review, not legal advice.
 
 - **Used when:** before publishing, or after adding analytics, accounts, permissions or SDKs.
-- **Writes:** `privacy/`
+- **Writes:** `privacy/audit.md`, `privacy/data-safety.md` and `privacy/privacy-policy.md`
 
 #### 🌐 i18n-filler
 
-Translates missing ARB or JSON keys in context, keeps placeholders and ICU syntax intact, copies `@key` metadata, and lists the translations it isn't sure about. Never changes existing translations.
+Translates missing ARB or JSON keys in context, keeps placeholders and ICU syntax intact, copies `@key` metadata, follows your glossary if there is one, and lists the translations it isn't sure about. Never changes existing translations or the source language.
 
 - **Used when:** after adding or changing user-facing strings.
-- **Writes:** your locale files
+- **Writes:** your non-source locale files
 
 #### 🚀 landing-page-generator
 
-Hero, features, visuals, a second call to action and a footer in one self-contained, responsive page with light and dark mode, then lists the placeholders left to fill.
+Hero, three to six features, visuals, a second call to action and a footer in one self-contained, responsive page with light and dark mode, using real store or waitlist links when it finds them, then lists the placeholders left to fill. No trackers or external scripts.
 
-- **Used when:** when a project needs a public page.
-- **Writes:** `landing/index.html`
+- **Used when:** a project needs a public page, website or waitlist page.
+- **Writes:** `landing/index.html`, plus the images it uses
 
 ### Progress
 
 #### 📓 devlog-writer
 
-Summary, what changed, decisions with the rejected alternatives, next steps and key files, in your app's look, plus an index. Never copies raw diffs or secrets into a page.
+Summary, what changed, decisions with the rejected alternatives, next steps and key files, in your app's look, plus an index. Self-contained pages without scripts; never copies raw diffs or secrets into a page.
 
 - **Used when:** at the end of a work session.
-- **Writes:** `devlog/`
+- **Writes:** `devlog/<date>-<slug>.html` and `devlog/index.html`
 
 > A subagent doesn't see your conversation, only what Claude hands it, so Claude passes it a summary of the session. Without one, it asks instead of guessing.
 
 #### 🧭 project-switcher
 
-Reads devlogs, git activity, TODOs and open reports across your projects folder: a table by how close each is to shipping, the closest one's remaining steps, a quick win and what's going stale.
+Reads devlogs, git activity, TODOs, weekly recaps and open reports across your projects folder: a table by how close each is to shipping, the closest one's remaining steps, a quick win and what's going stale. Changes nothing.
 
-- **Used when:** when you ask what to work on next, or come back after a break.
+- **Used when:** you ask what to work on next, or come back after a break.
+- **Looks in:** the folder you name, otherwise the parent of the current repo.
 
 #### 🗓️ weekly-recap
 
-Highlights, per-project bullets, stats and a build-in-public post draft (short and long), leaving out anything that looks confidential.
+Your own commits of the last seven days across all repos, as highlights, per-project bullets, stats and a build-in-public post draft (short and long), leaving out anything that looks confidential and listing what it left out.
 
 - **Used when:** at the end of the week, or when asked what you built.
-- **Writes:** `weekly-recaps/`
+- **Writes:** `weekly-recaps/<year>-week-<nn>.html` and an index, in the projects folder
 
 ## Skills
 
-#### 🔁 code-porter
+### 🔁 code-porter
 
 Moves code to another language, framework, library or major version (Java to Kotlin, JS to TS, Provider to Riverpod, Spring Boot 2 to 3) while keeping its behavior identical.
 
@@ -314,16 +371,18 @@ It never edits or deletes the old code on its own, doesn't fix bugs mid-port (it
 - **Used when:** code moves from one technology to another, even if you don't say "port". Not for small single-file edits.
 - **Writes:** `PORT.md`, the parity tests and the new code
 
-#### ⚔️ design-debate
+### ⚔️ design-debate
 
 Before a hard-to-reverse design choice (a library, data model, state management, sync strategy, monolith vs split, SQL vs NoSQL, REST vs WebSockets), a second Claude argues the strongest case for the option Claude is leaning against.
+
+<img src="assets/design-debate.svg" width="760" alt="A design debate's result with sample data: both sides side by side, where they agree and the deciding question">
 
 1. **Frame:** the question in one sentence, the constraints, both options, and which one Claude leans toward.
 2. **Opponent:** a headless `claude -p` with read-only tools (Read, Grep, Glob) argues the other side from your actual code, in under 250 words.
 3. **Rebuttal:** one round each, 2–3 sentences against the other's best point.
 4. **Side by side:** a table of core argument, best for, biggest risk, cost to switch later and rebuttal, then where they agree and the one question about your situation that should decide it.
 
-It stops there and lets you choose: no verdict unless you ask, nothing built until you pick. Three real options means one opponent per extra option, and a vague opponent gets one rerun with "be more specific to this codebase".
+It stops there and lets you choose: no verdict unless you ask, nothing built until you pick. Three real options means one opponent per extra option, and a vague opponent gets one rerun with "be more specific to this codebase". If `claude -p` fails, Claude says so and argues the other side itself, labeled as such.
 
 - **Used when:** a real architecture or design choice with more than one reasonable option, "should I use X or Y", or "debate this". Not for small choices that are easy to change later.
 - **Cost:** two extra headless calls per debate (the opposing case and its rebuttal), so a bit more usage than a normal answer.
@@ -384,11 +443,13 @@ claude plugin install design-debate --marketplace ISenseHostility/jarno-plugins
 
 In the desktop app: **+** next to the prompt box → **Plugins** → **Add marketplace** `ISenseHostility/jarno-plugins` → **Add plugin**.
 
-Each agent adds about 65 to 100 tokens to every session for its description (about 1,300 for all 17), which is how Claude knows when to use it; the rest loads only when it runs.
+The hook mods aren't plugins: clone the repo and run `node hook-mods/install.js` (see [Hook mods](#hook-mods)).
+
+Each agent adds about 65 to 100 tokens to every session for its description (about 1,300 for all 17), which is how Claude knows when to use it; the rest loads only when it runs. Skills work the same way.
 
 ## Development
 
-A mod is a hooks module (`hooks/register.ts[x]`) with tests in `tests/`; an agent is one file, `agents/<name>.md`, and a skill is `skills/<name>/SKILL.md`; each one's `description` tells Claude when to use it: what it does, then "Use proactively when …".
+A mod is a hooks module (`hooks/register.ts[x]`) with tests in `tests/`; an agent is one file, `agents/<name>.md`, and a skill is `skills/<name>/SKILL.md`; each one's `description` tells Claude when to use it: what it does, then "Use proactively when …". The hook mods are plain Node scripts in `hook-mods/`.
 
 ```sh
 claude plugin validate <plugin>   # what the engine will load and refuse
@@ -403,7 +464,7 @@ Versions step one major at a time (`1.0.0`, `2.0.0`, …) and each release is a 
 2. Commit, then `claude plugin tag <plugin>`.
 3. `git push --follow-tags`.
 
-`powershell -File export.ps1` zips each plugin, license included, to `exports/<plugin>-v<major>.zip`.
+`powershell -File export.ps1` zips each plugin, license included, to `exports/<plugin>-v<major>.zip`; add plugin names to export only those.
 
 ## License
 
