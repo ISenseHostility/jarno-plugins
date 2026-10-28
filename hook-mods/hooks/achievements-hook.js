@@ -116,6 +116,7 @@ function rotateLog() {
 }
 
 async function main() {
+  if (c.isHeadless()) return
   const input = await c.readStdin()
   const hook = input.hook_event_name
   if (!hook || input.agent_id) return

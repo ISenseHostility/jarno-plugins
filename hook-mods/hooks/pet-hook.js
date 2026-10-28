@@ -31,6 +31,7 @@ function pruneOld() {
 }
 
 async function main() {
+  if (c.isHeadless()) return
   const input = await c.readStdin()
   const event = EVENTS[input.hook_event_name]
   const session = String(input.session_id || '').replace(/[^\w-]/g, '')

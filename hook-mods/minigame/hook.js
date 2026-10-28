@@ -21,6 +21,9 @@ function read(cb) {
   process.stdin.on('error', () => { clearTimeout(timer); cb(data) })
 }
 
+// A headless run (`claude -p`, such as design-debate's opponent) never needs you.
+if (/^sdk-/.test(process.env.CLAUDE_CODE_ENTRYPOINT || '')) process.exit(0)
+
 read((raw) => {
   try {
     const input = JSON.parse(raw || '{}')

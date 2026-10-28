@@ -9,6 +9,9 @@ const path = require('path')
 const HOME = os.homedir()
 const CLAUDE_DIR = process.env.CLAUDE_CONFIG_DIR || path.join(HOME, '.claude')
 
+// `claude -p` and SDK runs (such as design-debate's opponent) set an sdk-* entrypoint.
+const isHeadless = () => /^sdk-/.test(process.env.CLAUDE_CODE_ENTRYPOINT || '')
+
 // Reads the hook's JSON input. Gives up after `ms` so a hook never hangs.
 function readStdin(ms = 1500) {
   return new Promise((resolve) => {
@@ -228,6 +231,6 @@ function toast(title, text) {
 
 module.exports = {
   CLAUDE_DIR, readStdin, readJSON, writeJSON, withLock,
-  clean, safeKey, projectRoot, projectName, isTestCommand, testOutcome,
+  isHeadless, clean, safeKey, projectRoot, projectName, isTestCommand, testOutcome,
   readLastTestResult, writeLastTestResult, toast,
 }
