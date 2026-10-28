@@ -165,10 +165,18 @@ function writeLastTestResult(cwd, result, command) {
   const root = projectRoot(cwd)
   if (!root) return
   try {
+    // A cloned repo could make .claude or the file a symlink to somewhere else: never write through one.
     const dir = path.join(root, '.claude')
     fs.mkdirSync(dir, { recursive: true })
+    if (fs.lstatSync(dir).isSymbolicLink()) return
+    const realRoot = fs.realpathSync(root)
+    if (fs.realpathSync(dir) !== path.join(realRoot, '.claude')) return
+    const target = path.join(dir, 'last-test-result')
+    try { if (!fs.lstatSync(target).isFile()) return } catch {}
     const cmd = String(command || '').replace(/\s+/g, ' ').slice(0, 200)
-    fs.writeFileSync(path.join(dir, 'last-test-result'), `${result}\n${new Date().toISOString()} by=cc-hooks\n${cmd}\n`)
+    const flags = fs.constants.O_WRONLY | fs.constants.O_CREAT | fs.constants.O_TRUNC | (fs.constants.O_NOFOLLOW || 0)
+    const fd = fs.openSync(target, flags, 0o644)
+    try { fs.writeSync(fd, `${result}\n${new Date().toISOString()} by=cc-hooks\n${cmd}\n`) } finally { fs.closeSync(fd) }
   } catch {}
 }
 
