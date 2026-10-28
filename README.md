@@ -4,11 +4,11 @@
 
 <h1 align="center">jarno-plugins</h1>
 
-<p align="center">Claude Code plugins: two always-on mods, 17 agents and a skill that Claude uses by itself when they fit.</p>
+<p align="center">Claude Code plugins: two always-on mods, 17 agents and two skills that Claude uses by itself when they fit.</p>
 
 <p align="center">
   <a href="https://code.claude.com/docs/en/plugins"><img src="https://img.shields.io/badge/Claude_Code-plugin_marketplace-D97757" alt="Claude Code plugin marketplace"></a>
-  <a href="#plugins"><img src="https://img.shields.io/badge/plugins-20-D97757" alt="20 plugins"></a>
+  <a href="#plugins"><img src="https://img.shields.io/badge/plugins-21-D97757" alt="21 plugins"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/ISenseHostility/jarno-plugins?color=blue" alt="MIT license"></a>
   <a href="https://github.com/ISenseHostility/jarno-plugins/commits/main"><img src="https://img.shields.io/github/last-commit/ISenseHostility/jarno-plugins" alt="Last commit"></a>
 </p>
@@ -53,11 +53,13 @@ Install any of them on its own: each one works without the others, and they get 
 | | Skill | Version | What it does | Used when |
 | --- | --- | --- | --- | --- |
 | 🔁 | [code-porter](#-code-porter) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fcode-porter%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="code-porter version"> | Ports code without changing what it does | Code moves to another language, framework, library or major version |
+| ⚔️ | [design-debate](#️-design-debate) | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fdesign-debate%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=version&color=D97757" alt="design-debate version"> | Has a second Claude argue for the option you're leaning against | A hard-to-reverse design choice, or when you say "debate this" |
 
 ## How they work together
 
 - **Shared folders.** Agents write their reports to fixed folders in your project, and other agents read them when they're there: a playtest report feeds the juice review, every report feeds the premortem, and devlogs feed the project overview and the weekly recap. Without those files, each agent works from the code alone.
 - **PORT.md.** code-porter keeps its plan and per-module status in `PORT.md`, which devlog-writer, project-switcher and premortem read, and it uses the premortem and dead-code reports when they exist.
+- **Design first.** rubber-duck questions your plan; when that turns up a real fork with two reasonable options, design-debate argues both before you pick, and scope-cutter keeps the winner small.
 - **Suggested next.** Every agent ends with the other agents that would help now, such as i18n-filler after error texts are rewritten, or privacy-auditor when the premortem finds no privacy audit. Claude can hand the work on without you asking.
 - **The mods on top.** stats-board counts each agent's tokens on its own row, and input-notify tells you when Claude is waiting on you again.
 
@@ -312,6 +314,20 @@ It never edits or deletes the old code on its own, doesn't fix bugs mid-port (it
 - **Used when:** code moves from one technology to another, even if you don't say "port". Not for small single-file edits.
 - **Writes:** `PORT.md`, the parity tests and the new code
 
+#### ⚔️ design-debate
+
+Before a hard-to-reverse design choice (a library, data model, state management, sync strategy, monolith vs split, SQL vs NoSQL, REST vs WebSockets), a second Claude argues the strongest case for the option Claude is leaning against.
+
+1. **Frame:** the question in one sentence, the constraints, both options, and which one Claude leans toward.
+2. **Opponent:** a headless `claude -p` with read-only tools (Read, Grep, Glob) argues the other side from your actual code, in under 250 words.
+3. **Rebuttal:** one round each, 2–3 sentences against the other's best point.
+4. **Side by side:** a table of core argument, best for, biggest risk, cost to switch later and rebuttal, then where they agree and the one question about your situation that should decide it.
+
+It stops there and lets you choose: no verdict unless you ask, nothing built until you pick. Three real options means one opponent per extra option, and a vague opponent gets one rerun with "be more specific to this codebase".
+
+- **Used when:** a real architecture or design choice with more than one reasonable option, "should I use X or Y", or "debate this". Not for small choices that are easy to change later.
+- **Cost:** two extra headless calls per debate (the opposing case and its rebuttal), so a bit more usage than a normal answer.
+
 ## Install
 
 Install the ones you want. In a Claude Code terminal session:
@@ -337,6 +353,7 @@ Install the ones you want. In a Claude Code terminal session:
 /plugin install project-switcher --marketplace ISenseHostility/jarno-plugins
 /plugin install weekly-recap --marketplace ISenseHostility/jarno-plugins
 /plugin install code-porter --marketplace ISenseHostility/jarno-plugins
+/plugin install design-debate --marketplace ISenseHostility/jarno-plugins
 ```
 
 Or from a shell:
@@ -362,6 +379,7 @@ claude plugin install devlog-writer --marketplace ISenseHostility/jarno-plugins
 claude plugin install project-switcher --marketplace ISenseHostility/jarno-plugins
 claude plugin install weekly-recap --marketplace ISenseHostility/jarno-plugins
 claude plugin install code-porter --marketplace ISenseHostility/jarno-plugins
+claude plugin install design-debate --marketplace ISenseHostility/jarno-plugins
 ```
 
 In the desktop app: **+** next to the prompt box → **Plugins** → **Add marketplace** `ISenseHostility/jarno-plugins` → **Add plugin**.

@@ -4,7 +4,7 @@
     "name": "ISenseHostility"
   },
   "metadata": {
-    "description": "Claude Code plugins: two always-on mods (desktop notifications, a stats board), 17 agents and a code-porting skill that Claude uses by itself for design, game testing, code and release checks, migrations and progress tracking."
+    "description": "Claude Code plugins: two always-on mods (desktop notifications, a stats board), 17 agents and two skills (code porting, design debates) that Claude uses by itself for design, game testing, code and release checks, migrations and progress tracking."
   },
   "plugins": [
     {
@@ -86,6 +86,10 @@
     {
       "name": "code-porter",
       "source": "./code-porter"
+    },
+    {
+      "name": "design-debate",
+      "source": "./design-debate"
     }
   ]
 }
