@@ -84,7 +84,7 @@ const nameWidth = Math.min(28, Math.max(8, ...projects.map(([p]) => p.length)))
 for (const [name, p] of projects.slice(0, 15)) {
   const lv = levelFor(p.xp || 0, rules.levels)
   const streak = streakOf(p.days || [], now)
-  line(`    ${name.slice(0, nameWidth).padEnd(nameWidth)}  ${cyan(`Lv ${String(lv.level).padStart(2)}`)}  ${bar(lv.into, lv.need)} ${dim(`${p.xp || 0} XP`.padEnd(9))} ${streak ? magenta(`🔥${streak}`) : dim('–')}  ${dim(p.lastActive ? ago(p.lastActive) : '')}`)
+  line(`    ${c.clean(name).slice(0, nameWidth).padEnd(nameWidth)}  ${cyan(`Lv ${String(lv.level).padStart(2)}`)}  ${bar(lv.into, lv.need)} ${dim(`${p.xp || 0} XP`.padEnd(9))} ${streak ? magenta(`🔥${streak}`) : dim('–')}  ${dim(p.lastActive ? ago(p.lastActive) : '')}`)
 }
 if (projects.length > 15) line(dim(`    … and ${projects.length - 15} more`))
 
@@ -100,7 +100,7 @@ for (const a of rules.achievements || []) {
     return (t.tier ? TIER_COLOR[t.tier] || gold : gold)(`● ${label}`)
   }).join('  ')
   const any = tiers.some((t) => stats.unlocked[t.tier ? `${a.id}:${t.tier}` : a.id])
-  const title = `${a.icon || '🏆'} ${a.name}`
+  const title = c.clean(`${a.icon || '🏆'} ${a.name}`)
   line(`    ${any ? bold(title) : dim(title)}  ${dim(a.description || '')}`)
   line(`       ${marks}`)
 }
@@ -110,7 +110,7 @@ line(bold('  Recent unlocks'))
 const recent = (stats.recent || []).slice(0, 8)
 if (!recent.length) line(dim('    none yet'))
 for (const r of recent) {
-  line(`    ${r.icon} ${bold(r.name)}${r.tier ? ` ${(TIER_COLOR[r.tier] || gold)(r.tier)}` : ''}  ${dim(`${r.project} · ${ago(r.ts)}`)}`)
+  line(`    ${c.clean(r.icon)} ${bold(c.clean(r.name))}${r.tier ? ` ${(TIER_COLOR[r.tier] || gold)(r.tier)}` : ''}  ${dim(`${c.clean(r.project)} · ${ago(r.ts)}`)}`)
 }
 line()
 console.log(out.join('\n'))

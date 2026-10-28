@@ -80,9 +80,18 @@ function projectRoot(cwd) {
   }
 }
 
+// Control characters stripped so a name can't drive the terminal.
+const clean = (s) => String(s).replace(/[\x00-\x1f\x7f-\x9f]/g, '')
+
+// Safe as an object key: a folder named __proto__ must not reach the prototype.
+const safeKey = (s) => {
+  const k = clean(s) || 'unknown'
+  return ['__proto__', 'constructor', 'prototype'].includes(k) ? `${k}_` : k
+}
+
 function projectName(cwd) {
   const root = projectRoot(cwd)
-  return root ? path.basename(root) || root : 'unknown'
+  return safeKey(root ? path.basename(root) || root : 'unknown')
 }
 
 // ---- test runs -------------------------------------------------------------
@@ -219,6 +228,6 @@ function toast(title, text) {
 
 module.exports = {
   CLAUDE_DIR, readStdin, readJSON, writeJSON, withLock,
-  projectRoot, projectName, isTestCommand, testOutcome,
+  clean, safeKey, projectRoot, projectName, isTestCommand, testOutcome,
   readLastTestResult, writeLastTestResult, toast,
 }

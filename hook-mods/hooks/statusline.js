@@ -15,6 +15,8 @@ const COLORS = {
 }
 const paint = (name, text) => (COLORS[name] ? `\x1b[${COLORS[name]}m${text}\x1b[0m` : text)
 const dim = (text) => `\x1b[2m${text}\x1b[0m`
+// Control characters stripped so a folder or model name can't drive the terminal.
+const clean = (s) => String(s).replace(/[\x00-\x1f\x7f-\x9f]/g, '')
 
 const DEFAULT_MOODS = {
   idle: { frames: ['(•‿•)', '(-‿-)'], bubble: '', color: 'white' },
@@ -159,9 +161,9 @@ async function main() {
   const parts = [pet]
   try {
     const model = input.model && (input.model.display_name || input.model.id)
-    if (model) parts.push(model)
+    if (model) parts.push(clean(model))
     const dir = (input.workspace && input.workspace.current_dir) || input.cwd
-    if (dir) parts.push(path.basename(dir))
+    if (dir) parts.push(clean(path.basename(dir)))
     if (ctx !== null) parts.push(`ctx ${Math.round(ctx)}%`)
   } catch {}
   return parts.join(` ${dim('│')} `).replace(` ${dim('│')} `, `  ${dim('│')} `)

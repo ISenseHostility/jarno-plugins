@@ -124,7 +124,7 @@ async function main() {
   const hour = new Date(now).getHours()
   const root = c.projectRoot(input.cwd)
   const project = c.projectName(input.cwd)
-  const session = String(input.session_id || 'unknown')
+  const session = c.safeKey(input.session_id || 'unknown')
   const rules = c.readJSON(RULES, { achievements: [], xp: {} })
   const xpTable = rules.xp || {}
   const kinds = []
