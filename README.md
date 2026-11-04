@@ -26,7 +26,7 @@ Always on: they hook into Claude Code itself.
 | Mod | What it does | Version |
 | --- | --- | :-: |
 | 🔔 [input-notify](#-input-notify) | Desktop notification when Claude needs you | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Finput-notify%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="input-notify version"> |
-| 📊 [stats-board](#-stats-board) | Docked pane: session, context, plan limits, tokens per agent | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fstats-board%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="stats-board version"> |
+| 📊 [stats-board](#-stats-board) | Docked pane: session, cost, context, plan limits, tokens per agent | <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FISenseHostility%2Fjarno-plugins%2Fmain%2Fstats-board%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=&color=D97757" alt="stats-board version"> |
 
 ### Agents
 
@@ -169,7 +169,7 @@ A pane docked beside the conversation with the numbers you'd otherwise have to a
 
 <img src="assets/stats-board.svg" width="460" alt="The stats board pane with sample data">
 
-- **Session:** how long it has been open, and how much of that Claude spent working (time waiting on you, for a question or a permission, is left out).
+- **Session:** how long it has been open, how much of that Claude spent working (time waiting on you, for a question or a permission, is left out), and what it has cost in US dollars so far, the same total `/cost` shows.
 - **Context window:** how full it is, in percent and tokens.
 - **Plan usage limits:** the 5-hour and weekly windows, with when each resets. Shown on a Claude subscription, from the first reply on.
 - **Tokens per agent:** input (cache writes included), cached and output, for the main conversation and each subagent, with a total.

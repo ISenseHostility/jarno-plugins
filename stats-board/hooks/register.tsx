@@ -1,5 +1,5 @@
 import { atom, read, update } from 'claude-code'
-import type { EngineInterface, Register, SessionContextUsage, SessionRateLimit } from 'claude-code'
+import type { EngineInterface, Register, SessionContextUsage, SessionCost, SessionRateLimit } from 'claude-code'
 
 import type { AgentTokens, Gauges, Timing } from '../types'
 
@@ -18,6 +18,8 @@ const compact = (n: number) =>
   n >= 1_000_000 ? `${(n / 1_000_000).toFixed(n >= 10_000_000 ? 0 : 1)}M`
   : n >= 1_000 ? `${(n / 1_000).toFixed(n >= 10_000 ? 0 : 1)}k`
   : String(n)
+
+const dollars = (usd: number) => `$${usd.toFixed(2)}`
 
 const fit = (text: string, width: number) =>
   text.length > width ? `${text.slice(0, Math.max(0, width - 1))}…` : text.padEnd(width)
@@ -54,8 +56,9 @@ const busyAt = (t: Timing, now: number) => {
   return t.busyMs + Math.max(0, now - t.turnStartedAt - waiting)
 }
 
-function toGauges(context: SessionContextUsage, limits: SessionRateLimit[]): Gauges {
+function toGauges(context: SessionContextUsage, limits: SessionRateLimit[], cost: SessionCost | undefined): Gauges {
   return {
+    ...(cost !== undefined && { costUsd: cost.usd }),
     ...(context.percent !== undefined && { contextPercent: context.percent }),
     ...(context.tokens !== undefined && { contextTokens: context.tokens }),
     contextWindow: context.window,
@@ -104,7 +107,7 @@ export const register: Register = on => {
     const started = await next(e)
     await $.command.register({ name: 'stats-board', description: 'Show the stats board pane' })
     const usage = await $.session.usage()
-    await update($, gauges, () => toGauges(usage.context, usage.rateLimits))
+    await update($, gauges, () => toGauges(usage.context, usage.rateLimits, usage.cost))
     await update($, timing, t => ({ ...t, sessionStartedAt: usage.startedAt }))
     // The clocks and reset countdowns tick between measurements.
     $.clock.every(5_000, () => $.ui.invalidate('ui.render'))
@@ -118,7 +121,7 @@ export const register: Register = on => {
   })
 
   on('session.measure', async ($, e, next) => {
-    await update($, gauges, () => toGauges(e.context, e.rateLimits))
+    await update($, gauges, () => toGauges(e.context, e.rateLimits, e.cost))
     return next(e)
   })
 
@@ -258,6 +261,10 @@ export const register: Register = on => {
             </Text>
             {lengthMs !== undefined && lengthMs > 0 &&
               <Text dimColor> {`(${Math.round((busyMs / lengthMs) * 100)}% of the session)`}</Text>}
+          </Box>
+          <Box flexDirection="row">
+            <Text>{fit('Cost', 8)}</Text>
+            <Text>{g.costUsd === undefined ? '—' : dollars(g.costUsd)}</Text>
           </Box>
         </Box>
 

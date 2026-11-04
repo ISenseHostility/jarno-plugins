@@ -32,6 +32,7 @@ test('the board shows context, limits and tokens per agent', async ($, on) => {
 
   const before = await $.ui.mount({ ...PANE, surface: 'terminal' })
   expect((await before.find({ type: 'Text', text: /No turns finished/ }))?.text).toBe('No turns finished yet.')
+  expect((await before.findAll({ type: 'Text' })).map(t => t.text)).toContain('—') // no cost reading yet
   await before.unmount()
 
   await $.session.measure({
@@ -40,7 +41,8 @@ test('the board shows context, limits and tokens per agent', async ($, on) => {
       { kind: 'five_hour', percentUsed: 31, resetsAt: new Date(Date.now() + 135 * 60_000).toISOString() },
       { kind: 'seven_day', percentUsed: 92.5 },
     ],
-    changed: ['context', 'rateLimits'],
+    cost: { usd: 4.8712 },
+    changed: ['context', 'rateLimits', 'cost'],
   })
   const turn = { answer: 'ok', durationMs: 1000, isAborted: false, reason: 'answer' } as const
   await $.turn.complete({ ...turn, turnId: 't1', usage: USAGE })
@@ -52,6 +54,7 @@ test('the board shows context, limits and tokens per agent', async ($, on) => {
     const texts = (await ui.findAll({ type: 'Text' })).map(t => t.text)
     const all = texts.join('\n')
 
+    expect(texts).toContain('$4.87')
     expect(all).toContain('62%')
     expect(all).toContain('124k of 200k tokens')
     expect(all).toContain('5-hour')

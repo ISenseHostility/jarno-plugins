@@ -15,6 +15,8 @@ export type Gauges = {
   contextTokens?: number
   contextWindow?: number
   limits: LimitWindow[]
+  /** The session's cost in US dollars, as /cost totals it; absent where the host keeps no ledger. */
+  costUsd?: number
 }
 
 /** Clock times are `$.clock.now()` milliseconds. */
